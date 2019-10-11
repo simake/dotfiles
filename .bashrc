@@ -44,6 +44,16 @@ mkcd() {
   fi
 }
 
+# Print public SSH key, generate it if necessary
+# Source: https://github.com/sapegin/dotfiles/blob/master/bin/ssh-key
+ssh-key() {
+  file="$HOME/.ssh/id_rsa.pub"
+  if [ ! -f "$file" ]; then
+    ssh-keygen -t rsa
+  fi
+  cat "$file"
+}
+
 
 #### Path, etc. ####
 

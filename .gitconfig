@@ -1,0 +1,11 @@
+[user]
+
+[alias]
+    a = add
+    b = branch
+    s = status
+    co = checkout
+    cm = commit -m
+    cam = commit --amend -m
+    can = commit --amend --no-edit
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all

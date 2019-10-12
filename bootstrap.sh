@@ -3,6 +3,7 @@
 files=(
     ".bashrc"
     ".bash_profile"
+    ".functions"
     ".gitconfig"
 )
 

@@ -1,0 +1,11 @@
+{
+    "window.zoomLevel": 1,
+
+    "C_Cpp.default.cppStandard": "c++11",
+
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "prettier.singleQuote": true
+}

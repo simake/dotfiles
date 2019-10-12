@@ -5,6 +5,7 @@ files=(
     ".bash_profile"
     ".functions"
     ".gitconfig"
+    ".spacemacs"
 )
 
 existing_files=""

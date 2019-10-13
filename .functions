@@ -15,7 +15,7 @@ wgetod() {
 # Source: https://gist.github.com/kjbrum/77b7af04191267b053e9
 weather() {
   location="$1"
-  curl http://wttr.in/$location?lang=sv
+  curl "http://wttr.in/$location?lang=sv"
 }
 
 # Make new directory and cd into it

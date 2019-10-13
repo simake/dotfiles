@@ -9,10 +9,7 @@ export PS1="\[\033[33m\]\u\[\033[m\]@\[\033[33m\]local:\[\033[33;1m\]\w\[\033[m\
 
 #### Alias ####
 
-alias ls='ls -GFh'
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+source ~/.aliases
 
 
 #### Path, etc. ####

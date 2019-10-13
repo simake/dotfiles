@@ -1,0 +1,4 @@
+alias ls='ls -GFh'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."

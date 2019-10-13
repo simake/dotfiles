@@ -4,6 +4,7 @@ files=(
     ".bashrc"
     ".bash_profile"
     ".functions"
+    ".aliases"
     ".gitconfig"
     ".spacemacs"
 )

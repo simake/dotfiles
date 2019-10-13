@@ -5,6 +5,7 @@ files=(
     ".bash_profile"
     ".functions"
     ".aliases"
+    ".prompt"
     ".gitconfig"
     ".spacemacs"
 )

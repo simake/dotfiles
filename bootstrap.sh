@@ -8,6 +8,7 @@ mappings=(
     ".prompt"               "$HOME/.prompt"
     ".gitconfig"            "$HOME/.gitconfig"
     ".spacemacs"            "$HOME/.spacemacs"
+    ".vscode.settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 )
 
 existing_files=""
@@ -37,6 +38,7 @@ echo $dotfiles_dir
 for (( i=0; i<${#mappings[@]}; i+=2 )); do
     src=${mappings[i]}
     dst=${mappings[i+1]}
+    mkdir -p "$(dirname "$dst")"
     ln -sf "$dotfiles_dir/$src" "$dst"
     echo "... linked $src"
 done

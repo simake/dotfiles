@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
-files=(
-    ".bashrc"
-    ".bash_profile"
-    ".functions"
-    ".aliases"
-    ".prompt"
-    ".gitconfig"
-    ".spacemacs"
+mappings=(
+    ".bashrc"               "$HOME/.bashrc"
+    ".bash_profile"         "$HOME/.bash_profile"
+    ".functions"            "$HOME/.functions"
+    ".aliases"              "$HOME/.aliases"
+    ".prompt"               "$HOME/.prompt"
+    ".gitconfig"            "$HOME/.gitconfig"
+    ".spacemacs"            "$HOME/.spacemacs"
 )
 
 existing_files=""
-for f in ${files[@]}; do
-    if [ -f $HOME/$f ]; then
-        existing_files="$existing_files $HOME/$f"
+for (( i=1; i<${#mappings[@]}; i+=2 )); do
+    dst=${mappings[i]}
+    if [ -e "$dst" ]; then
+        existing_files="$existing_files $dst"
     fi
 done
 
@@ -22,22 +23,22 @@ if [ -n "$existing_files" ]; then
     printf "%s\n" $existing_files
     echo -e "\nThese files will be replaced."
     read -p "Is that okay? [y/N] " response
-    case "$response" in 
-        [yY][eE][sS]|[yY])
-            rm $existing_files
-            echo "... files removed"
-            ;;
-        *)
-            echo -e "\nInstallation cancelled.\n"
-            return 1
-    esac
+
+    if ! [[ "$response" =~ ^[yY][eE]?[sS]?$ ]]; then
+        echo -e "\nInstallation cancelled."
+        exit 1
+    fi
 fi
 
 echo -e "\nLinking files to home directory:"
 
-for f in ${files[@]}; do
-    ln -s $f ~/$f
-    echo "... linked $f"
+dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo $dotfiles_dir
+for (( i=0; i<${#mappings[@]}; i+=2 )); do
+    src=${mappings[i]}
+    dst=${mappings[i+1]}
+    ln -sf "$dotfiles_dir/$src" "$dst"
+    echo "... linked $src"
 done
 
-echo -e "\nInstallation completed.\n"
+echo -e "\nInstallation completed."

@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
 mappings=(
-#    ON      SRC                     DST
-    "NO"   ".bashrc"               "$HOME/.bashrc"
-    "NO"   ".bash_profile"         "$HOME/.bash_profile"
-    "NO"   ".functions"            "$HOME/.functions"
-    "NO"   ".aliases"              "$HOME/.aliases"
-    "NO"   ".prompt"               "$HOME/.prompt"
-    "NO"   ".gitconfig"            "$HOME/.gitconfig"
-    "NO"   ".spacemacs"            "$HOME/.spacemacs"
-    "NO"   ".vscode.settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+#    ON      SRC                      DST
+    "NO"   ".bashrc"                "$HOME/.bashrc"
+    "NO"   ".bash_profile"          "$HOME/.bash_profile"
+    "NO"   ".zshrc"                 "$HOME/.zshrc"
+    "NO"   ".functions"             "$HOME/.functions"
+    "NO"   ".aliases"               "$HOME/.aliases"
+    "NO"   ".prompt"                "$HOME/.prompt"
+    "NO"   ".gitconfig"             "$HOME/.gitconfig"
+    "NO"   ".spacemacs"             "$HOME/.spacemacs"
+    "NO"   ".vscode.settings.json"  "$HOME/Library/Application Support/Code/User/settings.json"
 )
 
 # Toggle active mappings

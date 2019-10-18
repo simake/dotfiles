@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
 mappings=(
-#    ON      SRC                      DST
-    "NO"   ".bashrc"                "$HOME/.bashrc"
-    "NO"   ".bash_profile"          "$HOME/.bash_profile"
-    "NO"   ".zshrc"                 "$HOME/.zshrc"
-    "NO"   ".functions"             "$HOME/.functions"
-    "NO"   ".aliases"               "$HOME/.aliases"
-    "NO"   ".prompt"                "$HOME/.prompt"
-    "NO"   ".gitconfig"             "$HOME/.gitconfig"
-    "NO"   ".spacemacs"             "$HOME/.spacemacs"
-    "NO"   ".vscode.settings.json"  "$HOME/Library/Application Support/Code/User/settings.json"
+#    ON      SRC                               DST
+    "NO"   ".bashrc"                        "$HOME/.bashrc"
+    "NO"   ".bash_profile"                  "$HOME/.bash_profile"
+    "NO"   ".zshrc"                         "$HOME/.zshrc"
+    "NO"   ".functions"                     "$HOME/.functions"
+    "NO"   ".aliases"                       "$HOME/.aliases"
+    "NO"   ".prompt"                        "$HOME/.prompt"
+    "NO"   ".gitconfig"                     "$HOME/.gitconfig"
+    "NO"   ".spacemacs"                     "$HOME/.spacemacs"
+    "NO"   ".vscode.settings.json"          "$HOME/Library/Application Support/Code/User/settings.json"
+    # Note: plists are replaced upon saving, breaking the link
+    "NO"   "com.googlecode.iterm2.plist"    "$HOME/Library/Preferences/com.googlecode.iterm2.plist"
 )
 
 # Toggle active mappings
@@ -46,8 +48,6 @@ while true; do
         fi
     done
 done
-
-
 
 existing_files=""
 for (( i=0; i<${#mappings[@]}; i+=3 )); do

@@ -3,14 +3,17 @@ source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
 
 # Setup autocompletion
-autoload -Uz compinit
-compinit -C -i
+autoload -Uz compinit; compinit -C -i
 zstyle ':completion::complete:*' use-cache 1
 
 zstyle ':completion:*' menu select
 #zstyle ':completion:*' list-colors ''
 
 setopt NO_BEEP
+
+# Edit line in vim with ctrl-e (useful for multiline):
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 ### Plugin Configuration
 

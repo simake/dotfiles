@@ -2,8 +2,9 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Formulas
-brew install antibody
+brew install getantibody/tap/antibody
 brew install git
+brew install hub
 brew install lf
 brew install tree
 

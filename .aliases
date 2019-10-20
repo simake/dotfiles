@@ -1,5 +1,5 @@
 alias ls='ls -GFh'
-alias la="ls -A"
+alias la='ls -A'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -9,4 +9,8 @@ alias ga='git add'
 alias gb='git branch'
 alias gco='git checkout'
 alias gcm='git commit -m'
+alias gcam='git commit --amend -m'
+alias gcan='git commit --amend --no-edit'
 alias gl='git lol'
+
+alias tree='tree -C'

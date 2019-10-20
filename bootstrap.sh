@@ -5,6 +5,7 @@ mappings=(
     "NO"   ".bashrc"                        "$HOME/.bashrc"
     "NO"   ".bash_profile"                  "$HOME/.bash_profile"
     "NO"   ".zshrc"                         "$HOME/.zshrc"
+    "NO"   ".zsh_plugins.txt"               "$HOME/.zsh_plugins.txt"
     "NO"   ".functions"                     "$HOME/.functions"
     "NO"   ".aliases"                       "$HOME/.aliases"
     "NO"   ".prompt"                        "$HOME/.prompt"

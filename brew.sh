@@ -7,6 +7,8 @@ brew install git
 brew install hub
 brew install lf
 brew install tree
+brew install tldr
+brew install clang-format
 
 # Casks
 brew cask install google-chrome

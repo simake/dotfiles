@@ -10,6 +10,7 @@ mappings=(
     "NO"   ".aliases"                       "$HOME/.aliases"
     "NO"   ".prompt"                        "$HOME/.prompt"
     "NO"   ".gitconfig"                     "$HOME/.gitconfig"
+    "NO"   ".vimrc"                         "$HOME/.vimrc"
     "NO"   ".spacemacs"                     "$HOME/.spacemacs"
     "NO"   ".vscode.settings.json"          "$HOME/Library/Application Support/Code/User/settings.json"
     # Note: plists are replaced upon saving, breaking the link

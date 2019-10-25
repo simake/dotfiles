@@ -8,16 +8,27 @@ call plug#end()
 
 colorscheme dracula
 
-set number
+set encoding=utf-8
 
-inoremap ii <Esc>
+set number
+set hlsearch
+set incsearch
+set timeoutlen=200
+
+set backspace=indent,eol,start
+
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+
+let mapleader = "\<Space>"
+nnoremap <space> <Nop>
+
 inoremap jk <Esc>
 inoremap kj <Esc>
-inoremap jj <Esc>
-inoremap df <Esc>
-inoremap fd <Esc>
-
 cnoremap jk <C-c>
 cnoremap kj <C-c>
 
-set timeoutlen=200
+nnoremap <silent> <leader><space> :nohlsearch<CR>
+

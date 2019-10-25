@@ -6,7 +6,7 @@ Plug 'tpope/vim-repeat'
 
 call plug#end()
 
-colorscheme dracula
+:silent! colorscheme dracula
 
 set encoding=utf-8
 

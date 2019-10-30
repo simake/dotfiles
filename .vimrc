@@ -43,6 +43,10 @@ set autoindent
 set splitbelow
 set splitright
 
+" Gather all swap files in one place where they don't get in the way
+call mkdir($HOME."/.vim/swap", "p")
+set directory^=$HOME/.vim/swap//
+
 "  ----------------------------------------------------------------
 " |                      General Keymappings                       |
 "  ----------------------------------------------------------------

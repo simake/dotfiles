@@ -9,6 +9,7 @@ brew install lf
 brew install tree
 brew install tldr
 brew install clang-format
+brew install pandoc
 
 # Casks
 brew cask install google-chrome
@@ -16,3 +17,4 @@ brew cask install visual-studio-code
 brew cask install discord
 brew cask install iterm2
 brew cask install postman
+

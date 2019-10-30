@@ -2,6 +2,11 @@
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
 
+# Use vi mode
+set -o vi
+bindkey jk vi-cmd-mode
+bindkey kj vi-cmd-mode
+
 # Setup autocompletion
 autoload -Uz compinit; compinit -C -i
 zstyle ':completion::complete:*' use-cache 1
@@ -36,3 +41,4 @@ include() {
 
 include "$HOME/.functions"
 include "$HOME/.aliases"
+

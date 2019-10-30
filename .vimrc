@@ -44,7 +44,9 @@ set splitbelow
 set splitright
 
 " Gather all swap files in one place where they don't get in the way
-call mkdir($HOME."/.vim/swap", "p")
+if !isdirectory($HOME."/.vim/swap")
+    call mkdir($HOME."/.vim/swap", "p")
+endif
 set directory^=$HOME/.vim/swap//
 
 "  ----------------------------------------------------------------
@@ -66,6 +68,9 @@ nnoremap <silent> <space><space> :nohlsearch<CR>
 " Cycle splits
 nnoremap <C-J> <C-W>w
 nnoremap <C-K> <C-W>W
+
+" Toggle relative numbers
+nnoremap <silent> <leader>r :set relativenumber!<CR>
 
 "  ----------------------------------------------------------------
 " |                     Plugin Configuration                       |

@@ -9,6 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'wincent/scalpel'
 
 call plug#end()
 

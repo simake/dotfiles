@@ -18,9 +18,18 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt NO_BEEP
 setopt GLOB_DOTS
 
-# Edit line in vim with ctrl-e (useful for multiline):
+# Edit line in vim with ctrl-x ctrl-e (useful for multiline)
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Hit ctrl-space to expand aliases
+globalias() {
+    zle _expand_alias
+    zle expand-word
+}
+zle -N globalias
+bindkey -M emacs "^ " globalias
+bindkey -M viins "^ " globalias
 
 ### Plugin Configuration
 

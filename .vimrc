@@ -118,8 +118,16 @@ let g:fzf_action = {
   \ 'ctrl-h': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-" ======== scrooloose/nerdtree ========
+" ========== scrooloose/nerdtree ===========
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+
+let NERDTreeMapOpenSplit="h"
+let NERDTreeMapPreviewSplit="gh"
+let NERDTreeMapOpenVSplit="v"
+let NERDTreeMapPreviewVSplit="gv"
+
 let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeAutoDeleteBuffer=1
 

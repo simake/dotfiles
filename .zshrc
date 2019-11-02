@@ -1,4 +1,17 @@
+### Environment Variables
+
+# Set ls colors for BSD and GNU (tweaked for WSL)
+# https://geoff.greer.fm/lscolors/
+export LSCOLORS="exfxcxdxbxegedabagacex"
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34"
+
+# Have fzf use fd instead of the default find
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+
 ### General Settings
+
+setopt NO_BEEP
+setopt GLOB_DOTS
 
 # Use vi mode
 set -o vi
@@ -9,12 +22,10 @@ bindkey kj vi-cmd-mode
 autoload -Uz compinit; compinit -C -i
 zstyle ':completion::complete:*' use-cache 1
 
+# Configure completion menu
 zstyle ':completion:*' menu select
-#zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-setopt NO_BEEP
-setopt GLOB_DOTS
 
 # Edit line in vim with ctrl-x ctrl-e (useful for multiline)
 autoload edit-command-line; zle -N edit-command-line
@@ -28,14 +39,6 @@ globalias() {
 zle -N globalias
 bindkey -M emacs "^ " globalias
 bindkey -M viins "^ " globalias
-
-### Environment Variables
-
-# Set ls colors for BSD and GNU (tweaked for WSL)
-export LSCOLORS="exfxcxdxbxegedabagacex"
-export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34"
-# Have fzf use fd instead of the default find
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 
 ### Plugins
 

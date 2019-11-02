@@ -1,3 +1,5 @@
+### General Settings
+
 # Use vi mode
 set -o vi
 bindkey jk vi-cmd-mode
@@ -27,8 +29,15 @@ zle -N globalias
 bindkey -M emacs "^ " globalias
 bindkey -M viins "^ " globalias
 
-# Environment variables
+### Environment Variables
+
+# Set ls colors for BSD and GNU (tweaked for WSL)
+export LSCOLORS="exfxcxdxbxegedabagacex"
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34"
+# Have fzf use fd instead of the default find
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+
+### Plugins
 
 ### Plugin Configuration (pre-loading)
 
@@ -62,7 +71,7 @@ antibody bundle < ~/.zsh_plugins.txt
 
 ###
 
-# Misc includes
+### Misc includes
 include() {
   [[ -f "$1" ]] && source "$1"
 }

@@ -1,7 +1,3 @@
-# Initialize Antibody and plugins
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
-
 # Use vi mode
 set -o vi
 bindkey jk vi-cmd-mode
@@ -31,7 +27,29 @@ zle -N globalias
 bindkey -M emacs "^ " globalias
 bindkey -M viins "^ " globalias
 
-### Plugin Configuration
+# Environment variables
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+
+### Plugin Configuration (pre-loading)
+
+  ## wfxr/forgit
+    forgit_log=ggl
+    forgit_diff=ggd
+    forgit_add=gga
+    forgit_reset_head=ggrh
+    forgit_ignore=ggi
+    forgit_restore=ggcof
+    forgit_clean=ggclean
+    forgit_stash_show=ggss
+  ##
+
+###
+
+# Initialize Antibody and plugins
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
+
+### Plugin Configuration (post-loading)
 
   ## zsh-users/zsh-history-substring-search
     # Bind UP and DOWN
@@ -44,6 +62,7 @@ bindkey -M viins "^ " globalias
 
 ###
 
+# Misc includes
 include() {
   [[ -f "$1" ]] && source "$1"
 }

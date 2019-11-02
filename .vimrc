@@ -5,11 +5,14 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'dracula/vim'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'wincent/scalpel'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -76,4 +79,47 @@ nnoremap <silent> <leader>r :set relativenumber!<CR>
 "  ----------------------------------------------------------------
 " |                     Plugin Configuration                       |
 "  ----------------------------------------------------------------
+
+" ============ junegunn/fzf.vim ============
+
+" Find file {,tracked by git}
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fgf :GFiles<CR>
+
+" Find line in {loaded buffers,current buffer}
+nnoremap <silent> <leader>fl :Lines<CR>
+nnoremap <silent> <leader>fbl :BLines<CR>
+
+" Find commit {,associated with current buffer}
+nnoremap <silent> <leader>fc :Commits<CR>
+nnoremap <silent> <leader>fbc :BCommits<CR>
+
+" Find {command,keymappings,filetypes}
+nnoremap <silent> <leader>f: :Commands<CR>
+nnoremap <silent> <leader>fk :Maps<CR>
+nnoremap <silent> <leader>ft :Filetypes<CR>
+
+" Recursively search files in current directory for regex pattern
+nnoremap <silent> <leader>rg :Rg<Space>
+
+" Browse open buffers
+nnoremap <silent> <leader>b :Buffers<CR>
+
+" Show {file,command,search} history
+nnoremap <silent> <leader>hf :History<CR>
+nnoremap <silent> <leader>h: :History:<CR>
+nnoremap <silent> <leader>h/ :History/<CR>
+
+" git status
+nnoremap <silent> <leader>gs :GFiles?<CR>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" ======== scrooloose/nerdtree ========
+
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
 

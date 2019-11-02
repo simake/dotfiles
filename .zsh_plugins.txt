@@ -2,6 +2,7 @@ rupa/z
 zsh-users/zsh-completions
 #zsh-users/zsh-autosuggestions
 #robbyrussell/oh-my-zsh path:plugins/globalias
+wfxr/forgit
 
 # Note: order of these is important
 mafredri/zsh-async

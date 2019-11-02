@@ -10,6 +10,10 @@ brew install tree
 brew install tldr
 brew install clang-format
 brew install pandoc
+brew install hyperfine
+brew install ripgrep
+brew install fd
+brew install fzf
 
 # Casks
 brew cask install google-chrome

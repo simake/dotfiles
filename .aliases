@@ -20,4 +20,5 @@ alias gcan='git commit --amend --no-edit'
 alias gl='git lol'
 
 alias tree='tree -C'
+alias fcd='cd $(fd --type d | fzf --height=50% --border --preview="ls -A {}")'
 

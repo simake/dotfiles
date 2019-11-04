@@ -13,6 +13,8 @@ Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'wincent/scalpel'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -130,4 +132,20 @@ let NERDTreeMapPreviewVSplit="gv"
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer=1
+
+" =========airblade/vim-gitgutter'==========
+
+augroup gitgutter
+    " Turn off realtime update of the git gutter
+    autocmd! CursorHold,CursorHoldI *
+    " Update on exiting insert mode instead
+    " Note: This could slow down macros that repeat
+    " a lot of insert commands. I will monitor closely.
+    autocmd InsertLeave * GitGutter
+augroup END
+
+" Use a hotkey instead
+"nnoremap <silent> <expr> <leader>gg g:gitgutter_enabled ?
+"    \ ':GitGutterDisable<CR>':':GitGutterEnable<CR>'
+nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 

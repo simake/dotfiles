@@ -138,14 +138,12 @@ let NERDTreeAutoDeleteBuffer=1
 augroup gitgutter
     " Turn off realtime update of the git gutter
     autocmd! CursorHold,CursorHoldI *
-    " Update on exiting insert mode instead
-    " Note: This could slow down macros that repeat
-    " a lot of insert commands. I will monitor closely.
-    autocmd InsertLeave * GitGutter
+    " Update on changing text in normal mode
+    " or exiting insert mode instead.
+    autocmd TextChanged,InsertLeave * GitGutter
+    " Note: This could slow down macros with a lot
+    " of text-changing commands. I will monitor closely.
 augroup END
 
-" Use a hotkey instead
-"nnoremap <silent> <expr> <leader>gg g:gitgutter_enabled ?
-"    \ ':GitGutterDisable<CR>':':GitGutterEnable<CR>'
 nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 

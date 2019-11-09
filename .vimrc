@@ -53,6 +53,9 @@ set splitright
 set mouse=a
 " TODO: Set different mouse shapes depending on mode
 
+" Start scrolling before cursor reaches all the way to the top or bottom
+set scrolloff=3
+
 " Gather all swap files in one place where they don't get in the way
 if !isdirectory($HOME."/.vim/swap")
     call mkdir($HOME."/.vim/swap", "p")
@@ -160,4 +163,8 @@ augroup gitgutter
 augroup END
 
 nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+
+" TODO: The above doesn't work without being sourced a second time, presumably
+" because it has to happen after gitgutter is loaded. Will fix as soon as I
+" decide on a neat way of organizing my plugin configs.
 

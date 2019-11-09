@@ -71,6 +71,8 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 cnoremap jk <C-c>
 cnoremap kj <C-c>
+tnoremap jk <Esc>
+tnoremap kj <Esc>
 
 " Hide search highlighting
 nnoremap <silent> <space><space> :nohlsearch<CR>
@@ -88,42 +90,49 @@ nnoremap <silent> <leader>r :set relativenumber!<CR>
 
 " ============ junegunn/fzf.vim ============
 
-" Find file {,tracked by git}
-nnoremap <silent> <leader>ff :Files<CR>
-nnoremap <silent> <leader>fgf :GFiles<CR>
+" Find file {tracked by git,}
+nnoremap <silent> ,f :GFiles<CR>
+nnoremap <silent> ,,f :Files<CR>
 
-" Find line in {loaded buffers,current buffer}
-nnoremap <silent> <leader>fl :Lines<CR>
-nnoremap <silent> <leader>fbl :BLines<CR>
+" Find line in {current buffer,loaded buffers}
+nnoremap <silent> ,l :BLines<CR>
+nnoremap <silent> ,,l :Lines<CR>
 
-" Find commit {,associated with current buffer}
-nnoremap <silent> <leader>fc :Commits<CR>
-nnoremap <silent> <leader>fbc :BCommits<CR>
+" Find tag in {current buffer,project}
+nnoremap <silent> ,t :BTags<CR>
+nnoremap <silent> ,,t :Tags<CR>
 
-" Find {command,keymappings,filetypes}
-nnoremap <silent> <leader>f: :Commands<CR>
-nnoremap <silent> <leader>fk :Maps<CR>
-nnoremap <silent> <leader>ft :Filetypes<CR>
-nnoremap <silent> <leader>fh :Helptags<CR>
+" Find commit {associated with current buffer,}
+nnoremap <silent> ,gc :BCommits!<CR>
+nnoremap <silent> ,,gc :Commits!<CR>
 
-" Recursively search files in current directory for regex pattern
-nnoremap <silent> <leader>rg :Rg<Space>
+" Find {command,keymappings,filetypes,help,ultisnips}
+nnoremap <silent> ,: :Commands<CR>
+nnoremap <silent> ,k :Maps<CR>
+nnoremap <silent> ,y :Filetypes<CR>
+nnoremap <silent> ,h :Helptags<CR>
+nnoremap <silent> ,s :Snippets<CR>
 
 " Browse open buffers
-nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> ,b :Buffers<CR>
 
-" Show {file,command,search} history
-nnoremap <silent> <leader>hf :History<CR>
-nnoremap <silent> <leader>h: :History:<CR>
-nnoremap <silent> <leader>h/ :History/<CR>
+" Find past {file,command,search} (history)
+nnoremap <silent> ,pf :History<CR>
+nnoremap <silent> ,p: :History:<CR>
+nnoremap <silent> ,p/ :History/<CR>
+
+" Recursively search files in current directory for regex pattern
+nnoremap ,/ :Rg<Space>
 
 " git status
-nnoremap <silent> <leader>gs :GFiles?<CR>
+nnoremap <silent> <leader>gs :GFiles!?<CR>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-h': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_layout = { 'up': '~40%' }
 
 " ========== scrooloose/nerdtree ===========
 

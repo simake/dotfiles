@@ -49,6 +49,10 @@ set autoindent
 set splitbelow
 set splitright
 
+" Enable using the mouse for scrolling, selecting, etc.
+set mouse=a
+" TODO: Set different mouse shapes depending on mode
+
 " Gather all swap files in one place where they don't get in the way
 if !isdirectory($HOME."/.vim/swap")
     call mkdir($HOME."/.vim/swap", "p")
@@ -100,6 +104,7 @@ nnoremap <silent> <leader>fbc :BCommits<CR>
 nnoremap <silent> <leader>f: :Commands<CR>
 nnoremap <silent> <leader>fk :Maps<CR>
 nnoremap <silent> <leader>ft :Filetypes<CR>
+nnoremap <silent> <leader>fh :Helptags<CR>
 
 " Recursively search files in current directory for regex pattern
 nnoremap <silent> <leader>rg :Rg<Space>
@@ -133,7 +138,7 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer=1
 
-" =========airblade/vim-gitgutter'==========
+" ========= airblade/vim-gitgutter =========
 
 augroup gitgutter
     " Turn off realtime update of the git gutter

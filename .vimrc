@@ -62,6 +62,20 @@ if !isdirectory($HOME."/.vim/swap")
 endif
 set directory^=$HOME/.vim/swap//
 
+" Activate backups and keep them out of the way
+set backup
+if !isdirectory($HOME."/.vim/backup")
+    call mkdir($HOME."/.vim/backup", "p")
+endif
+set backupdir^=$HOME/.vim/backup
+
+" Activate persistent undo and keep it out of the way
+set undofile
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "p")
+endif
+set undodir^=$HOME/.vim/undo
+
 "  ----------------------------------------------------------------
 " |                      General Keymappings                       |
 "  ----------------------------------------------------------------
@@ -69,7 +83,7 @@ set directory^=$HOME/.vim/swap//
 let mapleader = "\<Space>"
 nnoremap <space> <Nop>
 
-" Conveniet maps for returning to normal mode
+" Convenient maps for returning to normal mode
 inoremap jk <Esc>
 inoremap kj <Esc>
 cnoremap jk <C-c>

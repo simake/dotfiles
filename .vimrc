@@ -15,6 +15,8 @@ Plug 'wincent/scalpel'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 
 call plug#end()
 
@@ -181,4 +183,40 @@ nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 " TODO: The above doesn't work without being sourced a second time, presumably
 " because it has to happen after gitgutter is loaded. Will fix as soon as I
 " decide on a neat way of organizing my plugin configs.
+
+" ======= dhruvasagar/vim-prosession =======
+
+" Custom FZF session searcher
+
+let g:fzf_prosession_action = {
+  \ 'ctrl-x': 'delete',
+  \ 'ctrl-v': 'overwrite' }
+
+function! g:FZFProsession(selection)
+    let [key, dir] = a:selection
+    let cmd = get(g:fzf_prosession_action, key, '')
+
+    if cmd == 'delete'
+        echomsg 'delete'
+    elseif cmd == 'overwrite'
+        echomsg 'overwrite'
+    else
+        echomsg 'else'
+    endif
+endfunction
+
+command! FZFProsession call fzf#run(fzf#wrap({
+  \ 'source': prosession#ListSessions(),
+  \ 'sink*': function('g:FZFProsession'),
+  \ 'options': '--expect='.join(keys(g:fzf_prosession_action), ',').
+  \ ' --prompt "Sessions> "'}))
+
+nnoremap ,s :FZFProsession<CR>
+
+
+"nnoremap ,s :call fzf#run({'source': prosession#ListSessions(), 'sink': 'Prosession', 'up': '40%'})<CR>
+"nnoremap ,d :call fzf#run({'source': prosession#ListSessions(), 'sink': 'ProsessionDelete', 'up': '40%'})<CR>
+
+" TODO: Make the above commands one and the same fzf list. But trigger
+" different sinks depending on what key is pressed.
 

@@ -51,6 +51,16 @@ set autoindent
 set splitbelow
 set splitright
 
+" Allow cursor to move where there is no text in visual block mode
+if has('virtualedit')
+    set virtualedit=block
+endif
+
+" Use 24-bit colors for better color accuracy
+if has('termguicolors')
+    set termguicolors
+endif
+
 " Enable using the mouse for scrolling, selecting, etc.
 set mouse=a
 " TODO: Set different mouse shapes depending on mode

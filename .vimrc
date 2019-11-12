@@ -148,7 +148,7 @@ nnoremap <silent> <leader>gs :GFiles!?<CR>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-h': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
 let g:fzf_layout = { 'up': '~40%' }
@@ -157,8 +157,8 @@ let g:fzf_layout = { 'up': '~40%' }
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 
-let NERDTreeMapOpenSplit="h"
-let NERDTreeMapPreviewSplit="gh"
+let NERDTreeMapOpenSplit="s"
+let NERDTreeMapPreviewSplit="gs"
 let NERDTreeMapOpenVSplit="v"
 let NERDTreeMapPreviewVSplit="gv"
 

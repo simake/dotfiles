@@ -183,7 +183,7 @@ augroup gitgutter
     autocmd! CursorHold,CursorHoldI *
     " Update on changing text in normal mode
     " or exiting insert mode instead.
-    autocmd TextChanged,InsertLeave * GitGutter
+    autocmd! TextChanged,InsertLeave * GitGutter
     " Note: This could slow down macros with a lot
     " of text-changing commands. I will monitor closely.
 augroup END

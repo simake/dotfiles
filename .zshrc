@@ -81,4 +81,5 @@ include() {
 
 include "$HOME/.functions"
 include "$HOME/.aliases"
+include "$HOME/.fzf.zsh"
 

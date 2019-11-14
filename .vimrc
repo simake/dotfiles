@@ -117,6 +117,13 @@ nnoremap <silent> <leader>r :set relativenumber!<CR>
 " |                     Plugin Configuration                       |
 "  ----------------------------------------------------------------
 
+" Use the following autocmd group to modify plugins post loading.
+" Define a function and hook it up with:
+" autocmd after VimEnter * call func()
+augroup after
+    autocmd!
+augroup END
+
 " ============ junegunn/fzf.vim ============
 
 " Find file {tracked by git,}
@@ -178,15 +185,18 @@ let NERDTreeAutoDeleteBuffer=1
 
 " ========= airblade/vim-gitgutter =========
 
-augroup gitgutter
-    " Turn off realtime update of the git gutter
-    autocmd! CursorHold,CursorHoldI *
-    " Update on changing text in normal mode
-    " or exiting insert mode instead.
-    autocmd! TextChanged,InsertLeave * GitGutter
-    " Note: This could slow down macros with a lot
-    " of text-changing commands. I will monitor closely.
-augroup END
+autocmd after VimEnter * call AfterGitGutter()
+function AfterGitGutter()
+    augroup gitgutter
+        " Turn off realtime update of the git gutter
+        autocmd! CursorHold,CursorHoldI *
+        " Update on changing text in normal mode
+        " or exiting insert mode instead.
+        autocmd! TextChanged,InsertLeave * GitGutter
+        " Note: This could slow down macros with a lot
+        " of text-changing commands. I will monitor closely.
+    augroup END
+endfunction
 
 nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 nnoremap <silent> <leader>ghn :GitGutterNextHunk<CR>
@@ -194,10 +204,6 @@ nnoremap <silent> <leader>ghp :GitGutterPrevHunk<CR>
 nnoremap <silent> <leader>ghs :GitGutterStageHunk<CR>
 nnoremap <silent> <leader>ghu :GitGutterUndoHunk<CR>
 nnoremap <silent> <leader>ghP :GitGutterPreviewHunk<CR>
-
-" TODO: The above doesn't work without being sourced a second time, presumably
-" because it has to happen after gitgutter is loaded. Will fix as soon as I
-" decide on a neat way of organizing my plugin configs.
 
 " ======= dhruvasagar/vim-prosession =======
 

@@ -113,6 +113,21 @@ nnoremap <C-K> <C-W>W
 " Toggle relative numbers
 nnoremap <silent> <leader>r :set relativenumber!<CR>
 
+" Toggle between window-local and global working directories
+function! ToggleLocalCWD()
+    if expand('%:p:h') == getcwd(-1)
+        echo getcwd()
+    elseif haslocaldir()
+        execute 'cd' getcwd(-1)
+        echo getcwd() . ' (global)'
+    else
+        :lcd %:p:h
+        echo getcwd() . ' (local)'
+    endif
+endfunction
+
+nnoremap <leader>cd :call ToggleLocalCWD()<CR>
+
 "  ----------------------------------------------------------------
 " |                     Plugin Configuration                       |
 "  ----------------------------------------------------------------
@@ -129,6 +144,9 @@ augroup END
 " Find file {tracked by git,}
 nnoremap <silent> ,f :GFiles<CR>
 nnoremap <silent> ,,f :Files<CR>
+
+" Find file in a specified directory
+nnoremap ,F :Files<Space>
 
 " Find line in {current buffer,loaded buffers}
 nnoremap <silent> ,l :BLines<CR>
@@ -173,6 +191,7 @@ let g:fzf_layout = { 'up': '~40%' }
 " ========== scrooloose/nerdtree ===========
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>N :NERDTreeFind<CR>
 
 let NERDTreeMapOpenSplit="s"
 let NERDTreeMapPreviewSplit="gs"

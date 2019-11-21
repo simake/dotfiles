@@ -29,7 +29,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Edit line in vim with ctrl-x ctrl-e (useful for multiline)
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^x^e' edit-command-line
+bindkey '^x^x' edit-command-line
 
 # Hit ctrl-space to expand aliases
 globalias() {
@@ -70,6 +70,8 @@ antibody bundle < ~/.zsh_plugins.txt
     # Bind k and j for vim
     bindkey -M vicmd 'k' history-substring-search-up
     bindkey -M vicmd 'j' history-substring-search-down
+    # Disable horrific red background when nothing is found
+    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=none
   ##
 
 ###

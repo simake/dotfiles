@@ -185,7 +185,15 @@ let NERDTreeAutoDeleteBuffer=1
 
 " ========= airblade/vim-gitgutter =========
 
-autocmd after VimEnter * call AfterGitGutter()
+let g:gitgutter_map_keys = 0
+
+nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+nnoremap <silent> <leader>hj :GitGutterNextHunk<CR>
+nnoremap <silent> <leader>hk :GitGutterPrevHunk<CR>
+nnoremap <silent> <leader>hs :GitGutterStageHunk<CR>
+nnoremap <silent> <leader>hu :GitGutterUndoHunk<CR>
+nnoremap <silent> <leader>hp :GitGutterPreviewHunk<CR>
+
 function! AfterGitGutter()
     augroup gitgutter
         " Turn off realtime update of the git gutter
@@ -198,12 +206,7 @@ function! AfterGitGutter()
     augroup END
 endfunction
 
-nnoremap <silent> <leader>gg :GitGutterToggle<CR>
-nnoremap <silent> <leader>ghn :GitGutterNextHunk<CR>
-nnoremap <silent> <leader>ghp :GitGutterPrevHunk<CR>
-nnoremap <silent> <leader>ghs :GitGutterStageHunk<CR>
-nnoremap <silent> <leader>ghu :GitGutterUndoHunk<CR>
-nnoremap <silent> <leader>ghP :GitGutterPreviewHunk<CR>
+autocmd after VimEnter * call AfterGitGutter()
 
 " ======= dhruvasagar/vim-prosession =======
 

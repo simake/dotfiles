@@ -186,7 +186,7 @@ let NERDTreeAutoDeleteBuffer=1
 " ========= airblade/vim-gitgutter =========
 
 autocmd after VimEnter * call AfterGitGutter()
-function AfterGitGutter()
+function! AfterGitGutter()
     augroup gitgutter
         " Turn off realtime update of the git gutter
         autocmd! CursorHold,CursorHoldI *

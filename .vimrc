@@ -111,6 +111,13 @@ nnoremap <silent> <space><space> :nohlsearch<CR>
 nnoremap <C-J> <C-W>w
 nnoremap <C-K> <C-W>W
 
+" Make Y consistent with C and D
+nnoremap Y y$
+
+" Remap Q from Ex mode to something useful (macros)
+" qq to start recording, q to stop, Q to play
+nnoremap Q @q
+
 " Toggle relative numbers
 nnoremap <silent> <leader>r :set relativenumber!<CR>
 

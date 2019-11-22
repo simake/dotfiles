@@ -17,6 +17,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -205,6 +206,13 @@ let g:NERDTreeAutoDeleteBuffer=1
 " These interfere with my window movement (<C-j> and <C-k>)
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
+
+" =========== majutsushi/tagbar ============
+
+nnoremap <silent> <leader>tb :TagbarToggle<CR>
+
+let g:tagbar_autoclose = 1
+let g:tagbar_sort = 0
 
 " ========= airblade/vim-gitgutter =========
 

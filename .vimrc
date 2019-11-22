@@ -193,14 +193,18 @@ let g:fzf_layout = { 'up': '~40%' }
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>N :NERDTreeFind<CR>
 
-let NERDTreeMapOpenSplit="s"
-let NERDTreeMapPreviewSplit="gs"
-let NERDTreeMapOpenVSplit="v"
-let NERDTreeMapPreviewVSplit="gv"
+let g:NERDTreeMapOpenSplit='s'
+let g:NERDTreeMapPreviewSplit='gs'
+let g:NERDTreeMapOpenVSplit='v'
+let g:NERDTreeMapPreviewVSplit='gv'
 
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-let NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer=1
+
+" These interfere with my window movement (<C-j> and <C-k>)
+let g:NERDTreeMapJumpPrevSibling='<Nop>'
+let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " ========= airblade/vim-gitgutter =========
 

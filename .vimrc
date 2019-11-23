@@ -119,15 +119,17 @@ nnoremap <leader>ww :write<CR>
 nnoremap <leader>xx :exit<CR>
 
 " Window management
-nnoremap <silent> <leader>sk :leftabove split<CR>
 nnoremap <silent> <leader>sh :leftabove vsplit<CR>
 nnoremap <silent> <leader>sj :rightbelow split<CR>
+nnoremap <silent> <leader>sk :leftabove split<CR>
 nnoremap <silent> <leader>sl :rightbelow vsplit<CR>
 nnoremap <silent> <leader>so :only<CR>
 
-" Cycle windows
-nnoremap <C-J> <C-W>w
-nnoremap <C-K> <C-W>W
+" Window movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Make Y consistent with C and D
 nnoremap Y y$

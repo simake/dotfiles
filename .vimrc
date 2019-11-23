@@ -66,6 +66,9 @@ if has('termguicolors')
     set termguicolors
 endif
 
+" Speed up macro playback
+set lazyredraw
+
 " Enable using the mouse for scrolling, selecting, etc.
 set mouse=a
 " TODO: Set different mouse shapes depending on mode
@@ -247,15 +250,21 @@ nnoremap <silent> <leader>hs :GitGutterStageHunk<CR>
 nnoremap <silent> <leader>hu :GitGutterUndoHunk<CR>
 nnoremap <silent> <leader>hp :GitGutterPreviewHunk<CR>
 
+function! ConditionalGitGutter()
+    " Only execute if typeahead buffer is empty (not during macros)
+    if getchar(1) == 0
+        :GitGutter
+    endif
+endfunction
+
 function! AfterGitGutter()
     augroup gitgutter
         " Turn off realtime update of the git gutter
         autocmd! CursorHold,CursorHoldI *
         " Update on changing text in normal mode
         " or exiting insert mode instead.
-        autocmd! TextChanged,InsertLeave * GitGutter
-        " Note: This could slow down macros with a lot
-        " of text-changing commands. I will monitor closely.
+        autocmd! TextChanged,InsertLeave * call ConditionalGitGutter()
+        " Note: The conditional execution solves the problem of slow macros
     augroup END
 endfunction
 

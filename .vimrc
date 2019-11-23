@@ -18,6 +18,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'majutsushi/tagbar'
+Plug 'mhinz/vim-sayonara'
 
 call plug#end()
 
@@ -107,7 +108,18 @@ tnoremap kj <Esc>
 " Hide search highlighting
 nnoremap <silent> <space><space> :nohlsearch<CR>
 
-" Cycle splits
+" Redundance to prevent accidental destructive operations
+nnoremap <leader>ww :write<CR>
+nnoremap <leader>xx :exit<CR>
+
+" Window management
+nnoremap <silent> <leader>sk :leftabove split<CR>
+nnoremap <silent> <leader>sh :leftabove vsplit<CR>
+nnoremap <silent> <leader>sj :rightbelow split<CR>
+nnoremap <silent> <leader>sl :rightbelow vsplit<CR>
+nnoremap <silent> <leader>so :only<CR>
+
+" Cycle windows
 nnoremap <C-J> <C-W>w
 nnoremap <C-K> <C-W>W
 
@@ -276,4 +288,10 @@ command! FZFProsession call fzf#run(fzf#wrap({
   \ ' --prompt "Sessions> "'}))
 
 nnoremap <silent> ,s :FZFProsession<CR>
+
+" =========== mhinz/vim-sayonara ===========
+
+" I may finally be able to exit vim
+nnoremap <silent> <leader>q :Sayonara<CR>
+nnoremap <silent> <leader>Q :Sayonara!<CR>
 

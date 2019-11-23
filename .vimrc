@@ -53,6 +53,9 @@ set autoindent
 set splitbelow
 set splitright
 
+" Remove comment leader when joining lines
+set formatoptions+=j
+
 " Allow cursor to move where there is no text in visual block mode
 if has('virtualedit')
     set virtualedit=block

@@ -118,7 +118,7 @@ nnoremap <silent> <space><space> :nohlsearch<CR>
 nnoremap <leader>ww :write<CR>
 nnoremap <leader>xx :exit<CR>
 
-" Window management
+" Window management (mnemonic: split)
 nnoremap <silent> <leader>sh :leftabove vsplit<CR>
 nnoremap <silent> <leader>sj :rightbelow split<CR>
 nnoremap <silent> <leader>sk :leftabove split<CR>
@@ -130,6 +130,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Tab management (use gt/gT for movement)
+nnoremap <silent> <leader>tn :tabnew<CR>
+nnoremap <silent> <leader>to :tabonly<CR>
 
 " Make Y consistent with C and D
 nnoremap Y y$

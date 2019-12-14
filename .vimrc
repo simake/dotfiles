@@ -17,6 +17,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-sayonara'
 
@@ -306,6 +307,11 @@ command! FZFProsession call fzf#run(fzf#wrap({
   \ ' --prompt "Sessions> "'}))
 
 nnoremap <silent> ,s :FZFProsession<CR>
+
+" ====== ludovicchabant/vim-gutentags ======
+
+let g:gutentags_cache_dir = '~/.vim/tags/'
+let g:gutentags_generate_on_empty_buffer = 1
 
 " =========== mhinz/vim-sayonara ===========
 

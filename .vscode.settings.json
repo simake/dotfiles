@@ -7,5 +7,10 @@
         "editor.formatOnSave": true,
         "editor.tabSize": 2
     },
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+
+    "python.linting.pylintArgs": [
+        "--errors-only",
+        "--generated-members=numpy.*,torch.*"
+    ]
 }

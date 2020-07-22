@@ -319,3 +319,14 @@ let g:gutentags_generate_on_empty_buffer = 1
 nnoremap <silent> <leader>q :Sayonara<CR>
 nnoremap <silent> <leader>Q :Sayonara!<CR>
 
+" |-|-|-|-|-|-|-|| misc ||-|-|-|-|-|-|-|
+
+function! SourceIfExists(file)
+    if filereadable(expand(a:file))
+        execute 'source' a:file
+    endif
+endfunction
+
+" Allow for per-machine overrides of settings
+call SourceIfExists('~/.vimrc.local')
+

@@ -76,12 +76,13 @@ antibody bundle < ~/.zsh_plugins.txt
 
 ###
 
-### Misc includes
-include() {
+### Sourcing
+source_if_exists() {
   [[ -f "$1" ]] && source "$1"
 }
-
-include "$HOME/.functions"
-include "$HOME/.aliases"
-include "$HOME/.fzf.zsh"
+source_if_exists "$HOME/.functions"
+source_if_exists "$HOME/.aliases"
+source_if_exists "$HOME/.fzf.zsh"
+# Allow for per-machine overrides of settings
+source_if_exists "$HOME/.zshrc.local"
 

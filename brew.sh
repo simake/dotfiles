@@ -14,6 +14,7 @@ brew install hyperfine
 brew install ripgrep
 brew install fd
 brew install fzf
+brew install pyenv
 
 # Casks
 brew cask install google-chrome

@@ -1,0 +1,17 @@
+APT:
+
+build-essential
+cmake
+ctags (needed by vim)
+tree
+checkinstall
+
+
+Other:
+
+fd (needed by vim)
+fzf
+antibody (needed by zsh)
+vim-plug (needed by vim)
+hyperfine
+

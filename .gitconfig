@@ -3,4 +3,9 @@
 
 [core]
     autocrlf = input
+    editor = vim
+
+[include]
+    # put user specific settings in the file below
+    path = ~/.gitconfig.local
 

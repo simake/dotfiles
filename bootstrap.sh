@@ -28,7 +28,7 @@ cd $dotfiles_dir
 declare -A mappings
 
 link_dir="link"
-for SRC in $(find $link_dir -type f); do
+for SRC in $(find $link_dir -mindepth 1); do
     if ! [[ -v mapping_overrides[$SRC] ]]; then
         mappings[$SRC]="any,$HOME/$(basename $SRC)"
     fi

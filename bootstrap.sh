@@ -1,67 +1,55 @@
 #!/usr/bin/env bash
 
-mappings=(
-#    ON      SRC                               DST
-    "NO"   ".bashrc"                        "$HOME/.bashrc"
-    "NO"   ".bash_profile"                  "$HOME/.bash_profile"
-    "NO"   ".zshrc"                         "$HOME/.zshrc"
-    "NO"   ".zsh_plugins.txt"               "$HOME/.zsh_plugins.txt"
-    "NO"   ".functions"                     "$HOME/.functions"
-    "NO"   ".aliases"                       "$HOME/.aliases"
-    "NO"   ".prompt"                        "$HOME/.prompt"
-    "NO"   ".gitconfig"                     "$HOME/.gitconfig"
-    "NO"   ".vimrc"                         "$HOME/.vimrc"
-    "NO"   ".spacemacs"                     "$HOME/.spacemacs"
-    "NO"   ".vscode.settings.json"          "$HOME/Library/Application Support/Code/User/settings.json"
+kernel="$(uname)"
+
+active_OS="Other"
+if [[ "$kernel" == "Darwin" ]]; then
+    active_OS="macOS"
+elif [[ "$kernel" == "Linux" ]]; then
+    distro="$(lsb_release -is)"
+    if [[ "$distro" == "Ubuntu" ]]; then
+        active_OS="Ubuntu"
+    fi
+fi
+
+# Files in the link folder are linked to $HOME by default.
+# Use the mappings below to override the defaults or add
+# new source->destination mappings, with OS criteria.
+declare -A mapping_overrides=(
+    # mapping template: ["SRC"]="OS,DST"
+    [".vscode.settings.json"]="macOS,$HOME/Library/Application Support/Code/User/settings.json"
     # Note: plists are replaced upon saving, breaking the link
-    "NO"   "com.googlecode.iterm2.plist"    "$HOME/Library/Preferences/com.googlecode.iterm2.plist"
+    ["com.googlecode.iterm2.plist"]="macOS,$HOME/Library/Preferences/com.googlecode.iterm2.plist"
 )
 
-# Toggle active mappings
-while true; do
-    echo -e "\nMake selections (type OK when satisfied):"
-    for (( i=0; i<${#mappings[@]}; i+=3 )); do
-        on=${mappings[i]}
-        src=${mappings[i+1]}
-        dst=${mappings[i+2]}
-        echo -e "$((i/3))) $on  $src  -->  $dst"
-    done
-    read selections
+dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd $dotfiles_dir
 
-    if [[ $selections =~ ^[oO][kK]$ ]]; then
-        break
+declare -A mappings
+
+link_dir="link"
+for SRC in $(find $link_dir -type f); do
+    if ! [[ -v mapping_overrides[$SRC] ]]; then
+        mappings[$SRC]="any,$HOME/$(basename $SRC)"
     fi
+done
 
-    for selection in ${selections[@]}; do
-        if ! [[ $selection =~ ^[0-9]+$ ]]; then
-            continue
-        fi
-
-        idx=$(($selection * 3))
-
-        if [ $idx -ge ${#mappings[@]} ]; then
-            continue
-        fi
-
-        if [ ${mappings[idx]} == "YE" ]; then
-            mappings[idx]="NO"
-        else
-            mappings[idx]="YE"
-        fi
-    done
+for SRC in "${!mapping_overrides[@]}"; do
+    IFS=',' read -ra values <<< ${mapping_overrides[$SRC]}
+    OS=${values[0]}
+    DST=${values[1]}
+    if [[ $OS == $active_OS ]]; then
+        mappings[$SRC]="$OS,$DST"
+    fi
 done
 
 existing_files=""
-for (( i=0; i<${#mappings[@]}; i+=3 )); do
-    on=${mappings[i]}
-    dst=${mappings[i+2]}
-
-    if [ "$on" == "NO" ]; then
-        continue
-    fi
-    
-    if [ -e "$dst" ]; then
-        existing_files="$existing_files $dst"
+for rhs in "${mappings[@]}"; do
+    IFS=',' read -ra values <<< "$rhs"
+    OS=${values[0]}
+    DST=${values[1]}
+    if [[ -e $DST ]]; then
+        existing_files="$existing_files $DST"
     fi
 done
 
@@ -77,21 +65,16 @@ if [ -n "$existing_files" ]; then
     fi
 fi
 
-echo -e "\nLinking selected files."
+echo -e "\nLinking files."
 
-dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-for (( i=0; i<${#mappings[@]}; i+=3 )); do
-    on=${mappings[i]}
-    src=${mappings[i+1]}
-    dst=${mappings[i+2]}
+for SRC in "${!mappings[@]}"; do
+    IFS=',' read -ra values <<< ${mappings[$SRC]}
+    OS=${values[0]}
+    DST=${values[1]}
 
-    if [ "$on" == "NO" ]; then
-        continue
-    fi
-
-    mkdir -p "$(dirname "$dst")"
-    ln -sf "$dotfiles_dir/$src" "$dst"
-    echo "... linked $src"
+    mkdir -p "$(dirname "$DST")"
+    ln -sf "$dotfiles_dir/$SRC" "$DST"
+    echo "... linked $SRC"
 done
 
-echo -e "\nInstallation completed."
+echo -e "\nLinking completed."

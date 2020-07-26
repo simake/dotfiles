@@ -1,5 +1,7 @@
 ### Environment Variables
 
+export DOTFILES=~/dotfiles
+
 # Set ls colors for BSD and GNU (tweaked for WSL)
 # https://geoff.greer.fm/lscolors/
 export LSCOLORS="exfxcxdxbxegedabagacex"
@@ -80,9 +82,11 @@ antibody bundle < ~/.zsh_plugins.txt
 source_if_exists() {
   [[ -f "$1" ]] && source "$1"
 }
-source_if_exists "$HOME/.functions"
-source_if_exists "$HOME/.aliases"
-source_if_exists "$HOME/.fzf.zsh"
+
+for f in $DOTFILES/source/*; do
+    source "$f"
+done
+
 # Allow for per-machine overrides of settings
 source_if_exists "$HOME/.zshrc.local"
 

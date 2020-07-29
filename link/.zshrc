@@ -16,9 +16,38 @@ setopt NO_BEEP
 setopt GLOB_DOTS
 
 # Use vi mode
-set -o vi
-bindkey jk vi-cmd-mode
-bindkey kj vi-cmd-mode
+bindkey -v
+bindkey -M viins jk vi-cmd-mode
+bindkey -M viins kj vi-cmd-mode
+
+bindkey '^?' backward-delete-char
+bindkey "^W" backward-kill-word
+
+autoload -Uz select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+    done
+done
+
+autoload -Uz select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+    for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+    done
+done
+
+# TODO: add in the below code without adding delay to commands such as dd and cc
+autoload -Uz surround
+#zle -N delete-surround surround
+#zle -N change-surround surround
+zle -N add-surround surround
+#bindkey -M vicmd cs change-surround
+#bindkey -M vicmd ds delete-surround
+#bindkey -M vicmd ys add-surround
+bindkey -M visual S add-surround
 
 # Setup autocompletion
 autoload -Uz compinit; compinit -C -i
@@ -29,7 +58,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# Edit line in vim with ctrl-x ctrl-e (useful for multiline)
+# Edit line in vim with ctrl-x ctrl-x (useful for multiline)
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x^x' edit-command-line
 

@@ -15,6 +15,16 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 setopt NO_BEEP
 setopt GLOB_DOTS
 
+# Make history persistent between sessions
+
+setopt extended_history   # include timestamps in history file
+setopt append_history     # shell instances append local history on exit
+setopt hist_ignore_dups   # only store one history entry for consecutive duplicate commands
+setopt hist_ignore_space  # ignore commands that start with space
+export SAVEHIST=100000
+export HISTSIZE=100000
+export HISTFILE="$HOME/.zsh_history"
+
 # Use vi mode
 bindkey -v
 bindkey -M viins jk vi-cmd-mode

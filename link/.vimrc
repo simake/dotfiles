@@ -21,6 +21,7 @@ Plug 'dhruvasagar/vim-prosession'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-sayonara'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -319,6 +320,41 @@ let g:gutentags_generate_on_empty_buffer = 1
 " I may finally be able to exit vim
 nnoremap <silent> <leader>q :Sayonara<CR>
 nnoremap <silent> <leader>Q :Sayonara!<CR>
+
+" =========== neoclide/coc.nvim ============
+
+let g:coc_global_extensions = [
+  \ 'coc-marketplace',
+  \ ]
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+function! s:show_documentation() abort
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+" Use tab and enter for completion navigation and confirmation
+inoremap <silent> <expr> <Tab>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<Tab>" :
+  \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent> <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+" Overload K to also do coc hover
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Always show the signcolumn, otherwise it shifts the text
+" each time diagnostics appear/become resolved.
+set signcolumn=yes
 
 " |-|-|-|-|-|-|-|| misc ||-|-|-|-|-|-|-|
 

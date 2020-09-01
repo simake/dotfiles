@@ -76,6 +76,11 @@ set lazyredraw
 set mouse=a
 " TODO: Set different mouse shapes depending on mode
 
+" Sync yank register with system clipboard
+if has('unnamedplus')
+    set clipboard=unnamedplus
+endif
+
 " Start scrolling before cursor reaches all the way to the top or bottom
 set scrolloff=3
 
@@ -144,6 +149,10 @@ nnoremap Y y$
 " Remap Q from Ex mode to something useful (macros)
 " qq to start recording, q to stop, Q to play
 nnoremap Q @q
+
+" Prevent x from overwriting registers/clipboard
+nnoremap x "_x
+vnoremap x "_x
 
 " Toggle relative numbers
 nnoremap <silent> <leader>r :set relativenumber!<CR>

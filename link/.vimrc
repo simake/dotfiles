@@ -23,6 +23,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-sayonara'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ap/vim-buftabline'
 
 call plug#end()
 
@@ -183,6 +184,10 @@ nnoremap <leader>cd :call ToggleLocalCWD()<CR>
 augroup after
     autocmd!
 augroup END
+
+" ============== dracula/vim ===============
+
+highlight TabLineFill guifg=#282a36
 
 " ============ junegunn/fzf.vim ============
 

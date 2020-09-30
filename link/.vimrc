@@ -141,6 +141,13 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Buffer management
+nnoremap <silent> <leader>bn :enew<CR>
+
+" Buffer movement
+nnoremap <silent> <Tab> :bnext<CR>
+nnoremap <silent> <S-Tab> :bprevious<CR>
+
 " Tab management (use gt/gT for movement)
 nnoremap <silent> <leader>tn :tabnew<CR>
 nnoremap <silent> <leader>to :tabonly<CR>

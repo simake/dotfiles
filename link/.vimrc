@@ -10,7 +10,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'wincent/scalpel'
 Plug 'scrooloose/nerdtree'
@@ -53,6 +52,10 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+
+" Display trailing whitespaces and indicate continuation of lines
+set listchars=trail:·,extends:>,precedes:<
+set list
 
 " More intuitive location for new splits
 set splitbelow

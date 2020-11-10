@@ -10,6 +10,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'wincent/scalpel'
 Plug 'scrooloose/nerdtree'
@@ -53,8 +54,8 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 
-" Display trailing whitespaces and indicate continuation of lines
-set listchars=trail:·,extends:>,precedes:<
+" Indicate continuation of lines when they don't fit on screen
+set listchars=extends:>,precedes:<
 set list
 
 " More intuitive location for new splits
@@ -151,10 +152,6 @@ nnoremap <silent> <leader>bn :enew<CR>
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
 
-" Tab management (use gt/gT for movement)
-nnoremap <silent> <leader>tn :tabnew<CR>
-nnoremap <silent> <leader>to :tabonly<CR>
-
 " Make Y consistent with C and D
 nnoremap Y y$
 
@@ -167,7 +164,7 @@ nnoremap x "_x
 vnoremap x "_x
 
 " Toggle relative numbers
-nnoremap <silent> <leader>r :set relativenumber!<CR>
+nnoremap <silent> <leader>tr :set relativenumber!<CR>
 
 " Toggle between window-local and global working directories
 function! ToggleLocalCWD()
@@ -268,7 +265,7 @@ let g:NERDTreeMapJumpNextSibling='<Nop>'
 
 " =========== majutsushi/tagbar ============
 
-nnoremap <silent> <leader>tb :TagbarToggle<CR>
+nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
 let g:tagbar_autoclose = 1
 let g:tagbar_sort = 0
@@ -345,6 +342,11 @@ let g:gutentags_generate_on_empty_buffer = 1
 " I may finally be able to exit vim
 nnoremap <silent> <leader>q :Sayonara<CR>
 nnoremap <silent> <leader>Q :Sayonara!<CR>
+
+" ===== ntpeters/vim-better-whitespace =====
+
+nnoremap <silent> <leader>tw :ToggleWhitespace<CR>
+" :StripWhitespace is also useful
 
 " =========== neoclide/coc.nvim ============
 

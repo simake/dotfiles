@@ -5,7 +5,7 @@
      exit 1
  fi
 
-git config -f ~/.gitconfig.local user.name $1
-git config -f ~/.gitconfig.local user.email $2
+git config -f ~/.gitconfig.local user.name "$1"
+git config -f ~/.gitconfig.local user.email "$2"
 
 echo "Git username and email have been set in ~/.gitconfig.local"

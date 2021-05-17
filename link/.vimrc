@@ -383,7 +383,20 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " each time diagnostics appear/become resolved.
 set signcolumn=yes
 
-" |-|-|-|-|-|-|-|| misc ||-|-|-|-|-|-|-|
+"  ----------------------------------------------------------------
+" |                       Filetype settings                        |
+"  ----------------------------------------------------------------
+
+" THIS SHOULD PROBABLY USE ~/.vim/ftplugin/*.vim INSTEAD
+
+augroup template_settings
+    autocmd!
+    autocmd filetype template echo "example"
+augroup end
+
+"  ----------------------------------------------------------------
+" |                              Misc                              |
+"  ----------------------------------------------------------------
 
 function! SourceIfExists(file)
     if filereadable(expand(a:file))

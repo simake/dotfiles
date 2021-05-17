@@ -10,7 +10,7 @@ curl https://pyenv.run | bash
 
 echo "
 export PATH=\"${PYENV_ROOT}/bin:\$PATH\"
-eval \"\$(pyenv init -)\"
+eval \"\$(pyenv init --path)\"
 eval \"\$(pyenv virtualenv-init -)\"
 " >> $HOME/.zshrc.local
 

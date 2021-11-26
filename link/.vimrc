@@ -16,12 +16,7 @@ Plug 'wincent/scalpel'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-sayonara'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ap/vim-buftabline'
 
@@ -263,13 +258,6 @@ let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMapJumpPrevSibling='<Nop>'
 let g:NERDTreeMapJumpNextSibling='<Nop>'
 
-" =========== majutsushi/tagbar ============
-
-nnoremap <silent> <leader>tt :TagbarToggle<CR>
-
-let g:tagbar_autoclose = 1
-let g:tagbar_sort = 0
-
 " ========= airblade/vim-gitgutter =========
 
 let g:gitgutter_map_keys = 0
@@ -301,42 +289,6 @@ endfunction
 
 autocmd after VimEnter * call AfterGitGutter()
 
-" ======= dhruvasagar/vim-prosession =======
-
-let g:prosession_dir = '~/.vim/session/'
-
-" Don't create or open a session unless I say so explicitly
-let g:prosession_on_startup = 0
-
-" Custom FZF session searcher:
-
-let g:fzf_prosession_action = {
-  \ 'ctrl-x': 'delete' }
-
-function! s:FZFProsession(selection)
-    let [key, dir] = a:selection
-    let cmd = get(g:fzf_prosession_action, key, '')
-
-    if cmd == 'delete'
-        execute ':ProsessionDelete' dir
-    else
-        execute ':Prosession' dir
-    endif
-endfunction
-
-command! FZFProsession call fzf#run(fzf#wrap({
-  \ 'source': prosession#ListSessions(),
-  \ 'sink*': function('s:FZFProsession'),
-  \ 'options': '--expect='.join(keys(g:fzf_prosession_action), ',').
-  \ ' --prompt "Sessions> "'}))
-
-nnoremap <silent> ,s :FZFProsession<CR>
-
-" ====== ludovicchabant/vim-gutentags ======
-
-let g:gutentags_cache_dir = '~/.vim/tags/'
-let g:gutentags_generate_on_empty_buffer = 1
-
 " =========== mhinz/vim-sayonara ===========
 
 " I may finally be able to exit vim
@@ -347,41 +299,6 @@ nnoremap <silent> <leader>Q :Sayonara!<CR>
 
 nnoremap <silent> <leader>tw :ToggleWhitespace<CR>
 " :StripWhitespace is also useful
-
-" =========== neoclide/coc.nvim ============
-
-let g:coc_global_extensions = [
-  \ 'coc-marketplace',
-  \ ]
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-function! s:show_documentation() abort
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
-" Use tab and enter for completion navigation and confirmation
-inoremap <silent> <expr> <Tab>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<Tab>" :
-  \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent> <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-" Overload K to also do coc hover
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" Always show the signcolumn, otherwise it shifts the text
-" each time diagnostics appear/become resolved.
-set signcolumn=yes
 
 "  ----------------------------------------------------------------
 " |                       Filetype settings                        |

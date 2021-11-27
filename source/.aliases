@@ -27,5 +27,3 @@ alias gri='git rebase -i'
 alias gmff='git merge --ff-only'
 
 alias tree='tree -C'
-alias fcd='cd $(fd --type d | fzf --height=50% --border --preview="ls -A {}")'
-

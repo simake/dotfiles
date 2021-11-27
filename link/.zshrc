@@ -117,6 +117,10 @@ antibody bundle < ~/.zsh_plugins.txt
 
 ###
 
+# Create black hole for loose binaries
+[ ! -d $HOME/bin ] && mkdir $HOME/bin
+export PATH=$HOME/bin:$PATH
+
 ### Sourcing
 source_if_exists() {
   [[ -f "$1" ]] && source "$1"

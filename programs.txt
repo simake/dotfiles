@@ -1,11 +1,11 @@
+--- Ubuntu ---
+
 APT:
 
 build-essential
 cmake
-ctags (needed by vim)
 tree
 checkinstall
-
 
 Other:
 
@@ -15,3 +15,25 @@ antibody (needed by zsh)
 vim-plug (needed by vim)
 hyperfine
 
+
+--- macOS ---
+
+Homebrew:
+
+antibody
+git
+gh
+lf
+tree
+tldr
+hyperfine
+ripgrep
+fd
+fzf
+pyenv
+
+Cask:
+
+google-chrome
+visual-studio-code
+iterm2

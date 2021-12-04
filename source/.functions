@@ -50,3 +50,13 @@ testcolors() {
       printf "\n";
     }'
 }
+
+# Configure git author locally in the current repo
+gitconfig() {
+  if [ $# -ne 2 ]; then
+    echo "usage: gitconfig <name> <email>"
+    return 1
+  fi
+  git config user.name "$1"
+  git config user.email "$2"
+}

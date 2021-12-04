@@ -98,9 +98,26 @@ bindkey -M viins "^ " globalias
 
 ###
 
-# Initialize Antibody and plugins
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+# Download Antigen if it's not there yet
+if [ ! -f ~/.antigen/antigen.zsh ]; then
+    mkdir ~/.antigen
+    curl -L git.io/antigen > ~/.antigen/antigen.zsh
+fi
+
+# Initialize Antigen and plugins
+source ~/.antigen/antigen.zsh
+
+antigen bundle rupa/z
+antigen bundle zsh-users/zsh-completions
+antigen bundle wfxr/forgit
+
+# Note: order of these is important
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure --branch=main
+antigen bundle zdharma-continuum/fast-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+
+antigen apply
 
 ### Plugin Configuration (post-loading)
 

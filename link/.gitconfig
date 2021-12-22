@@ -5,6 +5,9 @@
     autocrlf = input
     editor = vim
 
+[user]
+    useConfigOnly = true
+
 [include]
     # put user specific settings in the file below
     path = ~/.gitconfig.local

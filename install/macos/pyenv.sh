@@ -5,5 +5,6 @@ brew install pyenv-virtualenv
 
 echo "
 eval \"\$(pyenv init --path)\"
+eval \"\$(pyenv init -)\"
 eval \"\$(pyenv virtualenv-init -)\"
 " >> $HOME/.zshrc.local

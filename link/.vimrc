@@ -26,6 +26,7 @@ call plug#end()
 " |                        General Settings                        |
 "  ----------------------------------------------------------------
 
+set background=dark
 :silent! colorscheme dracula
 
 set encoding=utf-8
@@ -186,10 +187,6 @@ nnoremap <leader>cd :call ToggleLocalCWD()<CR>
 augroup after
     autocmd!
 augroup END
-
-" ============== dracula/vim ===============
-
-highlight TabLineFill guifg=#282a36
 
 " ============ junegunn/fzf.vim ============
 

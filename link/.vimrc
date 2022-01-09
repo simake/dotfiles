@@ -19,6 +19,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-sayonara'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ap/vim-buftabline'
+Plug 'ajh17/VimCompletesMe'
 
 call plug#end()
 
@@ -296,6 +297,11 @@ nnoremap <leader>xx :write<bar>:Sayonara<CR>
 
 nnoremap <silent> <leader>tw :ToggleWhitespace<CR>
 " :StripWhitespace is also useful
+
+" ========== ajh17/VimCompletesMe ==========
+
+" Accept autocomplete suggestion on enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 "  ----------------------------------------------------------------
 " |                       Filetype settings                        |

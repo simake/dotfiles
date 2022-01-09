@@ -4,7 +4,9 @@ set -euo pipefail
 # https://github.com/dbrgn/tealdeer
 
 install() {
-    wget -P $HOME/bin/ -O tldr https://github.com/dbrgn/tealdeer/releases/download/v1.4.1/tldr-linux-x86_64-musl
+    curl -fLo $HOME/bin/tldr --create-dirs \
+        https://github.com/dbrgn/tealdeer/releases/download/v1.4.1/tldr-linux-x86_64-musl
+    chmod +x $HOME/bin/tldr
 }
 
 deps() {

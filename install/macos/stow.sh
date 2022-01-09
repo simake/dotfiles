@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# https://github.com/sharkdp/hyperfine
-
 install() {
-    brew install hyperfine
+    brew install stow
 }
 
 deps() {
@@ -12,9 +10,9 @@ deps() {
 }
 
 exists() {
-    command -v hyperfine &> /dev/null
+    command -v stow &> /dev/null
 }
 
 cd $(dirname ${BASH_SOURCE[0]})
 source ../try_install.sh
-try_install hyperfine install deps exists
+try_install stow install deps exists

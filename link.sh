@@ -6,7 +6,7 @@ if [[ "$1" = "-y" ]]; then
 fi
 
 dotfiles="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd $dotfiles
+cd $dotfiles/link
 
 kernel="$(uname)"
 active_OS="other"
@@ -31,8 +31,7 @@ declare -A mapping_overrides=(
 
 declare -A mappings
 
-link_dir="link"
-for SRC in $(find $link_dir -mindepth 1); do
+for SRC in * .[^.]*; do
     if ! [[ -v mapping_overrides[$SRC] ]]; then
         mappings[$SRC]="any,$HOME/$(basename $SRC)"
     fi
@@ -77,7 +76,7 @@ for SRC in "${!mappings[@]}"; do
     DST=${values[1]}
 
     mkdir -p "$(dirname "$DST")"
-    ln -sf "$dotfiles/$SRC" "$DST"
+    ln -sf "$dotfiles/link/$SRC" "$DST"
     echo "... linked $SRC"
 done
 

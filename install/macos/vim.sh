@@ -9,7 +9,7 @@ install() {
     cd /tmp/vim/
     ./configure --prefix=/usr/local/stow/vim/ --with-features=huge -enable-multibyte --enable-cscope
     make -j8 VIMRUNTIMEDIR=/usr/local/share/vim/vim82
-    make install
+    sudo make install
     sudo stow -d /usr/local/stow vim
 }
 

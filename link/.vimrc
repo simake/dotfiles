@@ -124,10 +124,6 @@ tnoremap kj <Esc>
 " Hide search highlighting
 nnoremap <silent> <space><space> :nohlsearch<CR>
 
-" Redundance to prevent accidental destructive operations
-nnoremap <leader>ww :write<CR>
-nnoremap <leader>xx :exit<CR>
-
 " Window management (mnemonic: split)
 nnoremap <silent> <leader>sh :leftabove vsplit<CR>
 nnoremap <silent> <leader>sj :rightbelow split<CR>
@@ -291,6 +287,10 @@ autocmd after VimEnter * call AfterGitGutter()
 " I may finally be able to exit vim
 nnoremap <silent> <leader>q :Sayonara<CR>
 nnoremap <silent> <leader>Q :Sayonara!<CR>
+
+" Write and close modified buffers/windows easily
+nnoremap <leader>ww :write<CR>
+nnoremap <leader>xx :write<bar>:Sayonara<CR>
 
 " ===== ntpeters/vim-better-whitespace =====
 

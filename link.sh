@@ -52,13 +52,13 @@ for rhs in "${mappings[@]}"; do
     OS=${values[0]}
     DST=${values[1]}
     if [[ -e $DST ]]; then
-        existing_files="$existing_files $DST"
+        existing_files="$existing_files;$DST"
     fi
 done
 
 if [[ -n "$existing_files" && -z "$skip_prompt" ]]; then
     echo -e "\nThe following files already exist:"
-    printf "%s\n" $existing_files
+    ( IFS=';'; printf "%s\n" $existing_files )
     echo -e "\nThese files will be replaced."
     read -p "Is that okay? [y/N] " response
 

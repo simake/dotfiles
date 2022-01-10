@@ -1,0 +1,20 @@
+--- Ubuntu ---
+
+APT:
+
+build-essential
+tree
+checkinstall
+
+
+--- macOS ---
+
+Homebrew:
+
+tree
+
+Cask:
+
+google-chrome
+visual-studio-code
+iterm2

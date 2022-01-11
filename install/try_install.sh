@@ -4,24 +4,22 @@ try_install() {
     deps=$3
     exists=$4
 
-    # TODO: make the messages stand out
-    #GREEN='\033[0;32m'
-    #GREY='\033[0;37m'
-    #RED='\033[0;31m'
-    #NC='\033[0m'
+    GREEN='\033[32m'
+    YELLOW='\033[33m'
+    RED='\033[31m'
+    NC='\033[00m'
 
     if exists; then
-        #echo "${GREY}${name} already installed${NC}"
-        echo "${name} is already installed"
+        echo -e "${YELLOW}${name} already installed${NC}"
     elif ! deps; then
-        #echo "${RED}${name} lacks dependencies${NC}"
-        echo "${name} lacks dependencies"
+        echo -e "${RED}${name} lacks dependencies${NC}"
         return 1
     else
-        #echo "${GREEN}Installing ${name}...${NC}"
-        echo "Installing ${name}..."
-        install
-        #echo -e "${GREEN}${name} installed${NC}"
-        echo -e "${name} was installed"
+        echo -e "${GREEN}Installing ${name}...${NC}"
+        set +e
+        ( set -e; install )
+        test $? -ne 0 && echo -e "${RED}Installation failed${NC}" && return 1
+        set -e
+        echo -e "${GREEN}${name} installed${NC}"
     fi
 }

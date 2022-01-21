@@ -12,5 +12,70 @@
     "python.linting.pylintArgs": [
         "--errors-only",
         "--generated-members=numpy.*,torch.*"
-    ]
+    ],
+
+    "vim.disableExtension": false,
+    "vim.useSystemClipboard": true,
+    "vim.highlightedyank.enable": true,
+    "vim.useCtrlKeys": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-k>": false
+    },
+    "vim.leader": "<Space>",
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        },
+        {
+            "before": ["k", "j"],
+            "after": ["<Esc>"]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // Save and close files easily
+        {
+            "before": ["<leader>", "q"],
+            "after": [":q<CR>"]
+        },
+        {
+            "before": ["<leader>", "w", "w"],
+            "after": [":", "w", "<CR>"]
+        },
+        {
+            "before": ["<leader>", "x", "x"],
+            "after": [":", "w", "q", "<CR>"]
+        },
+        // Prevent x and c from overwriting registers/clipboard
+        {
+            "before": ["x"],
+            "after": ["\"", "_", "x"]
+        },
+        {
+            "before": ["c"],
+            "after": ["\"", "_", "c"]
+        },
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // Prevent x and c from overwriting registers/clipboard
+        {
+            "before": ["x"],
+            "after": ["\"", "_", "x"]
+        },
+        {
+            "before": ["c"],
+            "after": ["\"", "_", "c"]
+        },
+    ],
+    "vim.commandLineModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j", "k"],
+            "after": ["C-c"]
+        },
+        {
+            "before": ["k", "j"],
+            "after": ["C-c"]
+        },
+    ],
 }

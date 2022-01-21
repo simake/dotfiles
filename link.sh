@@ -25,6 +25,7 @@ fi
 declare -A mapping_overrides=(
     # mapping template: ["SRC"]="OS,DST"
     [".vscode.settings.json"]="macos,$HOME/Library/Application Support/Code/User/settings.json"
+    [".vscode.keybindings.json"]="macos,$HOME/Library/Application Support/Code/User/keybindings.json"
     # Note: plists are replaced upon saving, breaking the link
     ["com.googlecode.iterm2.plist"]="macos,$HOME/Library/Preferences/com.googlecode.iterm2.plist"
 )

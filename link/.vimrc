@@ -152,9 +152,10 @@ nnoremap Y y$
 " qq to start recording, q to stop, Q to play
 nnoremap Q @q
 
-" Prevent x from overwriting registers/clipboard
+" Prevent x and c from overwriting registers/clipboard
 nnoremap x "_x
 vnoremap x "_x
+nnoremap c "_c
 
 " Toggle relative numbers
 nnoremap <silent> <leader>tr :set relativenumber!<CR>

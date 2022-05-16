@@ -1,5 +1,6 @@
 [alias]
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = lol --all
 
 [core]
     autocrlf = input

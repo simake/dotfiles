@@ -60,3 +60,31 @@ gitconfig() {
   git config user.name "$1"
   git config user.email "$2"
 }
+
+# Get the combined changes of all commits with a
+# particular identifier in the commit message.
+# WIP (breaks on merge commits for instance)
+storydiff() {( set -e
+  if [ $# -ne 1 ]; then
+    echo "usage: storydiff <regex>"
+    return 1
+  fi
+  tmp_branch="storydiff-tmp"
+  if git rev-parse --quiet --verify $tmp_branch > /dev/null; then
+    echo "Temporary branch $tmp_branch already exists."
+    echo "Delete it if it's not used for something else."
+    return 1
+  fi
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  hashes=$(git log --reverse --grep="$1" --pretty=format:%H)
+  oldest=$(echo $hashes | head -n 1)
+  others=$(echo $hashes | tail -n +2)
+  git branch $tmp_branch $oldest
+  git checkout $tmp_branch
+  while IFS=" " read -r hash; do
+      git cherry-pick $hash --strategy-option theirs --keep-redundant-commits
+  done <<< "$others"
+  git diff ${oldest}^ $tmp_branch
+  git checkout $current_branch
+  git branch -D $tmp_branch
+)}

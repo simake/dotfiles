@@ -26,5 +26,7 @@ alias gla='git lola'
 alias gr='git rebase'
 alias gri='git rebase -i'
 alias gmff='git merge --ff-only'
+alias gpr='git pull --rebase'
+alias gpra='git pull --rebase --autostash'
 
 alias tree='tree -C'

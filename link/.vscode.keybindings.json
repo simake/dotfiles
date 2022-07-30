@@ -21,5 +21,11 @@
         "key": "ctrl+k",
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
+    },
+    // Use ctrl+d on Windows/Linux to expand selection to other occurrences even in vim mode
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.addSelectionToNextFindMatch",
+        "when": "isMac || editorHasSelection"
     }
 ]

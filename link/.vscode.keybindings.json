@@ -26,6 +26,6 @@
     {
         "key": "ctrl+d",
         "command": "editor.action.addSelectionToNextFindMatch",
-        "when": "isMac || editorHasSelection"
+        "when": "!isMac && editorHasSelection"
     }
 ]

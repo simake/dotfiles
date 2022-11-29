@@ -91,9 +91,18 @@ bindkey -M viins "^ " globalias
     forgit_add=gga
     forgit_reset_head=ggrh
     forgit_ignore=ggi
-    forgit_restore=ggcof
+    forgit_checkout_file=ggcof
+    forgit_checkout_branch=ggco
+    forgit_branch_delete=ggbd
+    forgit_checkout_tag=ggcot
+    forgit_checkout_commit=ggcoc
+    forgit_revert_commit=ggrc
     forgit_clean=ggclean
     forgit_stash_show=ggss
+    forgit_cherry_pick=ggcp
+    forgit_rebase=ggrb
+    forgit_blame=ggbl
+    forgit_fixup=ggfu
   ##
 
 ###

@@ -56,6 +56,25 @@
             "before": ["c"],
             "after": ["\"", "_", "c"]
         },
+        // Make Y consistent with C and D
+        {
+            "before": ["Y"],
+            "after": ["y", "$"]
+        },
+        // qq to start recording, q to stop, Q to play
+        {
+            "before": ["Q"],
+            "after": ["@", "q"]
+        },
+        // Emmet
+        {
+            "before": ["<leader>", "e", "w"],
+            "commands": ["editor.emmet.action.wrapWithAbbreviation"],
+        },
+        {
+            "before": ["<leader>", "e", "u"],
+            "commands": ["editor.emmet.action.updateTag"],
+        }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         // Prevent x and c from overwriting registers/clipboard

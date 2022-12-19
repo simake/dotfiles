@@ -6,7 +6,7 @@
     # and maybe but it right after the hash instead of at the end?
     # basically compare to:
     # git log --graph --decorate --pretty=oneline --abbrev-commit
-    lol = log --pretty='%C(auto,yellow)%h %C(auto,magenta)%C(auto,blue)%ad %C(auto,magenta)%<(7,trunc)%aN %C(auto,reset)%s%C(auto,red)% gD% D' --date=short --graph
+    lol = log --pretty='%C(auto,yellow)%h %C(auto,magenta)%C(auto,blue)%ad %C(auto,magenta)%<(9,trunc)%aN %C(auto,reset)%s%C(auto,red)% gD% D' --date=short --graph
     lola = lol --all
 
 [core]

@@ -107,26 +107,27 @@ bindkey -M viins "^ " globalias
 
 ###
 
-# Download Antigen if it's not there yet
-if [ ! -f ~/.antigen/antigen.zsh ]; then
-    mkdir ~/.antigen
-    curl -L git.io/antigen > ~/.antigen/antigen.zsh
-fi
+# Download antidote if it's not there yet
+[[ -e ${ZDOTDIR:-~}/.antidote ]] ||
+  git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 
-# Initialize Antigen and plugins
-source ~/.antigen/antigen.zsh
+# Initialize antidote
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+#
+# Initialize antidote's dynamic mode, which changes `antidote bundle`
+# from static mode.
+source <(antidote init)
 
-antigen bundle rupa/z
-antigen bundle zsh-users/zsh-completions
-antigen bundle wfxr/forgit
+# Initialize plugins
+antidote bundle rupa/z
+antidote bundle zsh-users/zsh-completions
+antidote bundle wfxr/forgit
 
 # Note: order of these is important
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure --branch=main
-antigen bundle zdharma-continuum/fast-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-
-antigen apply
+antidote bundle mafredri/zsh-async
+antidote bundle sindresorhus/pure
+antidote bundle zdharma-continuum/fast-syntax-highlighting
+antidote bundle zsh-users/zsh-history-substring-search
 
 ### Plugin Configuration (post-loading)
 

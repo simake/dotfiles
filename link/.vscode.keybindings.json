@@ -27,5 +27,45 @@
         "key": "ctrl+d",
         "command": "editor.action.addSelectionToNextFindMatch",
         "when": "!isMac && editorHasSelection"
-    }
+    },
+    {
+        "key": "alt+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "-editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    // new neovim shortcuts
+    {
+        "command": "vscode-neovim.compositeEscape1",
+        "key": "j",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "j"
+    },
+    {
+        "command": "vscode-neovim.compositeEscape2",
+        "key": "k",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "k"
+    },
+    // angular2-switcher
+    // {
+    //     "command": "extension.switchTs",
+    //     "key": "alt+u",
+    // },
+    // {
+    //     "command": "extension.switchTemplate",
+    //     "key": "alt+i",
+    // },
+    // {
+    //     "command": "extension.switchStyle",
+    //     "key": "alt+o",
+    // },
+    // {
+    //     "command": "extension.switchSpec",
+    //     "key": "alt+p",
+    // }
 ]

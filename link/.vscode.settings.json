@@ -3,16 +3,27 @@
 
     "C_Cpp.default.cppStandard": "c++11",
 
-    "[javascript]": {
-        "editor.formatOnSave": true,
-        "editor.tabSize": 2
-    },
     "prettier.singleQuote": true,
+    "[javascript][typescript]": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 
     "python.linting.pylintArgs": [
         "--errors-only",
         "--generated-members=numpy.*,torch.*"
     ],
+
+    "trailing-spaces.liveMatching": false,
+    "trailing-spaces.trimOnSave": true,
+    "trailing-spaces.deleteModifiedLinesOnly": true,
 
     "vim.disableExtension": false,
     "vim.useSystemClipboard": true,
@@ -66,6 +77,16 @@
             "before": ["Q"],
             "after": ["@", "q"]
         },
+        // Find references
+        {
+            "before": ["g", "r"],
+            "commands": ["editor.action.goToReferences"]
+        },
+        // Rename
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["editor.action.rename"],
+        },
         // Emmet
         {
             "before": ["<leader>", "e", "w"],
@@ -74,6 +95,23 @@
         {
             "before": ["<leader>", "e", "u"],
             "commands": ["editor.emmet.action.updateTag"],
+        },
+        // angular2-switcher
+        {
+            "before":["g", "u"],
+            "commands":["extension.switchTs"],
+        },
+        {
+            "before":["g", "i"],
+            "commands":["extension.switchTemplate"],
+        },
+        {
+            "before":["g", "o"],
+            "commands":["extension.switchStyle"],
+        },
+        {
+            "before":["g", "p"],
+            "commands":["extension.switchSpec"],
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -86,6 +124,16 @@
             "before": ["c"],
             "after": ["\"", "_", "c"]
         },
+        // Find references
+        {
+            "before": ["g", "r"],
+            "commands": ["editor.action.goToReferences"]
+        },
+        // Rename
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["editor.action.rename"],
+        },
     ],
     "vim.commandLineModeKeyBindingsNonRecursive": [
         {
@@ -97,4 +145,29 @@
             "after": ["C-c"]
         },
     ],
+
+    "editor.bracketPairColorization.enabled": false,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vite.autoStart": false,
+
+    "diffEditor.renderSideBySide": false,
+    "editor.inlineSuggest.enabled": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+
+    // "editor.snippetSuggestions": "top",
+
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.stickyScroll.enabled": true,
 }

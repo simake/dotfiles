@@ -22,6 +22,15 @@
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
     },
+    // Smart selection expansion with ctrl+l/ctrl+h
+    {
+        "key": "ctrl+l",
+        "command": "editor.action.smartSelect.expand"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "editor.action.smartSelect.shrink"
+    },
     // Use ctrl+d on Windows/Linux to expand selection to other occurrences even in vim mode
     {
         "key": "ctrl+d",

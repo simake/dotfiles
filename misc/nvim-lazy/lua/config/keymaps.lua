@@ -4,10 +4,11 @@
 
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "kj", "<Esc>")
-vim.keymap.set("c", "jk", "C-c")
-vim.keymap.set("c", "kj", "C-c")
-vim.keymap.set("t", "jk", "<Esc>")
-vim.keymap.set("t", "kj", "<Esc>")
+-- vim.keymap.set("c", "jk", "C-c")
+-- vim.keymap.set("c", "kj", "C-c")
+-- vim.keymap.set("t", "jk", "<Esc>")
+-- vim.keymap.set("t", "kj", "<Esc>")
+-- TODO: Disabled because they mess with terminal mode and don't really work in command mode either
 
 -- Prevent x and c from overwriting registers/clipboard
 -- vim.keymap.set("n", "x", '"_x')

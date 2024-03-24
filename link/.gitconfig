@@ -16,6 +16,12 @@
 [user]
     useConfigOnly = true
 
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+
 [include]
     # put user specific settings in the file below
     path = ~/.gitconfig.local

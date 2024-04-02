@@ -76,26 +76,39 @@ if [[ ${#file_args[@]} -gt 0 ]]; then
     fi
 fi
 
-existing_destinations=""
+existing_destinations=()
 for rhs in "${mappings[@]}"; do
     IFS=',' read -ra values <<< "$rhs"
     OS=${values[0]}
     DST=${values[1]}
     if [[ -e $DST ]]; then
-        existing_destinations="$existing_destinations;$DST"
+        existing_destinations+=("$DST")
     fi
 done
 
 if [[ -n "$existing_destinations" && -z "$skip_prompt" ]]; then
     echo -e "\nThe following destinations already exist:"
-    ( IFS=';'; printf "%s\n" $existing_destinations )
-    echo -e "\nThese files will be replaced. Folders will be moved to (and replace) *.old."
+    ( IFS=';'; printf "%s\n" ${existing_destinations[@]} )
+    echo -e "\nThese files will be backed up and replaced."
     read -p "Is that okay? [y/N] " response
 
     if ! [[ "$response" =~ ^[yY][eE]?[sS]?$ ]]; then
         echo -e "\nInstallation aborted."
         exit 1
     fi
+fi
+
+if [[ -n "$existing_destinations" ]]; then
+    backup_root_dir="$HOME/dotfiles_backups"
+    backup_dir="$backup_root_dir/$(date +%Y%m%d_%H%M%S)"
+
+    echo -e "\nBacking up existing files to $backup_dir"
+    mkdir -p "$backup_dir"
+
+    for DST in "${existing_destinations[@]}"; do
+        mv "$DST" "$backup_dir"
+        echo "... backed up $DST"
+    done
 fi
 
 echo -e "\nLinking files."
@@ -106,11 +119,6 @@ for SRC in "${!mappings[@]}"; do
     DST=${values[1]}
 
     mkdir -p "$(dirname "$DST")"
-    if [[ -d $DST ]]; then
-        rm -rf "$DST.old"
-        mv "$DST" "$DST.old"
-        echo "... moved $DST to *.old"
-    fi
     ln -sfn "$dotfiles/link/$SRC" "$DST"
     echo "... linked $SRC"
 done

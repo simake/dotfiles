@@ -626,6 +626,11 @@ require('lazy').setup({
         -- javascript = { { "prettierd", "prettier" } },
       },
     },
+    config = function(_, opts)
+      require('conform').setup(opts)
+
+      vim.keymap.set('n', '<leader>cf', require('conform').format, { desc = 'Conform: [C]ode [F]ormat' })
+    end,
   },
 
   { -- Autocompletion

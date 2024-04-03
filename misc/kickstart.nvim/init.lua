@@ -613,6 +613,9 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
+        if not vim.g.format_on_save then
+          return nil
+        end
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
@@ -636,6 +639,14 @@ require('lazy').setup({
       require('conform').setup(opts)
 
       vim.keymap.set('n', '<leader>cf', require('conform').format, { desc = 'Conform: [C]ode [F]ormat' })
+
+      -- Set format on save by default
+      vim.g.format_on_save = true
+
+      vim.keymap.set('n', '<leader>cF', function()
+        vim.g.format_on_save = not vim.g.format_on_save
+        print('format_on_save', vim.g.format_on_save and 'on' or 'off')
+      end, { desc = 'Conform: Toggle format on save' })
     end,
   },
 

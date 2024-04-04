@@ -885,6 +885,33 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'kdheepak/lazygit.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    config = function()
+      vim.g.lazygit_floating_window_scaling_factor = 0.95
+      vim.g.lazygit_use_custom_config_file_path = 1
+      vim.g.lazygit_config_file_path = vim.fn.expand '~/lazygit-config.yml'
+    end,
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+      { '<leader>gG', '<cmd>LazyGitCurrentFile<cr>', desc = 'LazyGitCurrentFile' },
+      { '<leader>gf', '<cmd>LazyGitFilterCurrentFile<cr>', desc = 'LazyGitFilterCurrentFile' },
+      { '<leader>gc', '<cmd>LazyGitConfig<cr>', desc = 'LazyGitConfig' },
+    },
+  },
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.

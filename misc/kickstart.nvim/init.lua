@@ -875,6 +875,16 @@ require('lazy').setup({
     },
   },
 
+  {
+    'mhinz/vim-sayonara',
+    config = function()
+      vim.keymap.set('n', '<leader>q', ':Sayonara<CR>', { desc = 'Close' })
+      vim.keymap.set('n', '<leader>Q', ':Sayonara!<CR>', { desc = 'Force Close' })
+      vim.keymap.set('n', '<leader>ww', ':write<CR>', { desc = 'Write' })
+      vim.keymap.set('n', '<leader>xx', ':write<bar>:Sayonara<CR>', { desc = 'Write & Close' })
+    end,
+  },
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.

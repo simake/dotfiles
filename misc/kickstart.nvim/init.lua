@@ -419,6 +419,24 @@ require('lazy').setup({
     end,
   },
 
+  { -- Project management
+    'ahmedkhalf/project.nvim',
+    dependencies = {
+      'telescope.nvim',
+    },
+    opts = {
+      manual_mode = false,
+    },
+    event = 'VeryLazy', -- https://github.com/ahmedkhalf/project.nvim/issues/123
+    config = function(_, opts)
+      require('project_nvim').setup(opts)
+      require('telescope').load_extension 'projects'
+    end,
+    keys = {
+      { '<leader>sp', '<Cmd>Telescope projects<CR>', desc = '[S]earch [P]rojects' },
+    },
+  },
+
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {

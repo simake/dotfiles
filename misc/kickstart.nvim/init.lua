@@ -390,9 +390,21 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', function()
-        builtin.buffers { sort_lastused = true, sort_mru = true }
-      end, { desc = '[ ] Find existing buffers' })
+
+      local actions = require 'telescope.actions'
+      vim.keymap.set('n', '<leader>k', function()
+        builtin.buffers {
+          sort_lastused = true,
+          sort_mru = true,
+          initial_mode = 'normal',
+          attach_mappings = function(_, map)
+            map({ 'n' }, '<leader>', function(prompt_bufnr)
+              actions.select_default(prompt_bufnr)
+            end, { nowait = true, desc = 'select_default' })
+            return true
+          end,
+        }
+      end, { desc = 'Buffer switcher' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

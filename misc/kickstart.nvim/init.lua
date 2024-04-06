@@ -360,6 +360,11 @@ require('lazy').setup({
         defaults = {
           layout_config = { prompt_position = 'top' },
           sorting_strategy = 'ascending',
+          mappings = {
+            n = {
+              ['q'] = require('telescope.actions').close,
+            },
+          },
         },
         pickers = {
           find_files = {

@@ -757,6 +757,10 @@ require('lazy').setup({
 
       luasnip.config.setup {}
 
+      local is_empty_line = function()
+        return vim.api.nvim_get_current_line():match '^%s*$' ~= nil
+      end
+
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -764,6 +768,24 @@ require('lazy').setup({
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
+        enabled = function()
+          -- The cmp menu appearing on an empty line is usually just annoying
+          -- and makes it hard to insert multiple newlines in a row.
+          return not is_empty_line()
+        end,
+
+        -- Accept the completion, for nvim-cmp or copilot, depending on which is showing.
+        -- This is outside the `mapping` table because it should still work when the cmp menu is hidden.
+        vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+          if cmp.visible() then
+            cmp.confirm { select = true }
+          elseif copilot_suggestion.is_visible() then
+            copilot_suggestion.accept()
+          else
+            -- If neither cmp nor copilot is visible, insert a tab character
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
+          end
+        end, { desc = 'Smart completion' }),
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
@@ -782,22 +804,6 @@ require('lazy').setup({
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
           ['<CR>'] = cmp.mapping.confirm { select = true },
-
-          -- Accept the completion, for nvim-cmp or copilot, depending on which is showing.
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-            if cmp.visible() then
-              local entry = cmp.get_selected_entry()
-              if not entry then
-                cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-              end
-              cmp.confirm()
-            elseif copilot_suggestion.is_visible() then
-              copilot_suggestion.accept()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display

@@ -1,3 +1,5 @@
+gui:
+  mainPanelSplitMode: 'horizontal' # one of 'horizontal' | 'flexible' | 'vertical'
 git:
   autoRefresh: true
   autoFetch: true

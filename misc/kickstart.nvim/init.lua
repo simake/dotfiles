@@ -727,11 +727,34 @@ require('lazy').setup({
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+
+      {
+        'zbirenbaum/copilot.lua',
+        cmd = 'Copilot',
+        config = function()
+          require('copilot').setup {
+            suggestion = {
+              enabled = true,
+              auto_trigger = true,
+            },
+            server_opts_overrides = {
+              settings = {
+                advanced = {
+                  listCount = 5,
+                  inlineSuggestCount = 1,
+                },
+              },
+            },
+          }
+        end,
+      },
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local copilot_suggestion = require 'copilot.suggestion'
+
       luasnip.config.setup {}
 
       cmp.setup {
@@ -747,24 +770,42 @@ require('lazy').setup({
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
-          -- Select the [n]ext item
+          -- Select the [n]ext / [p]revious item
           ['<C-n>'] = cmp.mapping.select_next_item(),
-          -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
           -- Scroll the documentation window [b]ack / [f]orward
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
-          -- Accept ([y]es) the completion.
+          -- Accept the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+
+          -- Accept the completion, for nvim-cmp or copilot, depending on which is showing.
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+            if cmp.visible() then
+              local entry = cmp.get_selected_entry()
+              if not entry then
+                cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+              end
+              cmp.confirm()
+            elseif copilot_suggestion.is_visible() then
+              copilot_suggestion.accept()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
           ['<C-Space>'] = cmp.mapping.complete {},
+
+          -- Abort the completion and close the completion menu.
+          ['<C-e>'] = cmp.mapping.abort(),
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:

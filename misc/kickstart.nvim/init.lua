@@ -757,8 +757,9 @@ require('lazy').setup({
 
       luasnip.config.setup {}
 
-      local is_empty_line = function()
-        return vim.api.nvim_get_current_line():match '^%s*$' ~= nil
+      local has_words_before = function()
+        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_get_current_line():sub(col, col):match '%s' == nil
       end
 
       cmp.setup {
@@ -769,9 +770,9 @@ require('lazy').setup({
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
         enabled = function()
-          -- The cmp menu appearing on an empty line is usually just annoying
+          -- The cmp menu appearing when the cursor is the first thing on the line is usually just annoying
           -- and makes it hard to insert multiple newlines in a row.
-          return not is_empty_line()
+          return has_words_before()
         end,
 
         -- Accept the completion, for nvim-cmp or copilot, depending on which is showing.

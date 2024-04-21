@@ -360,7 +360,7 @@ require('lazy').setup({
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
+    -- branch = '0.1.x', -- latest commit because I want this: https://github.com/nvim-telescope/telescope.nvim/pull/3010
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -420,6 +420,9 @@ require('lazy').setup({
             n = {
               ['q'] = require('telescope.actions').close,
             },
+          },
+          path_display = {
+            'filename_first',
           },
         },
         pickers = {

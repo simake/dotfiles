@@ -430,10 +430,14 @@ require('lazy').setup({
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
             find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
           },
+          lsp_definitions = { initial_mode = 'normal' },
+          lsp_references = { initial_mode = 'normal' },
+          lsp_implementations = { initial_mode = 'normal' },
+          lsp_type_definitions = { initial_mode = 'normal' },
         },
         extensions = {
           ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+            require('telescope.themes').get_dropdown { initial_mode = 'normal' },
           },
         },
       }

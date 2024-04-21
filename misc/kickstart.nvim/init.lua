@@ -825,6 +825,7 @@ require('lazy').setup({
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
+        -- TODO: This isn't reliable. I mean how often is this re-run really? It would be much better if I could listen for attemps to open the menu and then prevent/permit it.
         enabled = function()
           -- The cmp menu appearing when the cursor is the first thing on the line is usually just annoying
           -- and makes it hard to insert multiple newlines in a row.

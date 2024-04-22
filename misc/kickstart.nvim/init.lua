@@ -380,6 +380,9 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+      -- File browser
+      { 'nvim-telescope/telescope-file-browser.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -429,6 +432,15 @@ require('lazy').setup({
           find_files = {
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
             find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+            mappings = {
+              n = {
+                ['n'] = function()
+                  local selected_entry = require('telescope.actions.state').get_selected_entry()[1]
+                  local parent_dir = vim.fn.fnamemodify(selected_entry, ':h')
+                  require('telescope').extensions.file_browser.file_browser { path = parent_dir }
+                end,
+              },
+            },
           },
           lsp_definitions = { initial_mode = 'normal' },
           lsp_references = { initial_mode = 'normal' },
@@ -439,12 +451,31 @@ require('lazy').setup({
           ['ui-select'] = {
             require('telescope.themes').get_dropdown { initial_mode = 'normal' },
           },
+          file_browser = {
+            hidden = { file_browser = true, folder_browser = true },
+            initial_mode = 'normal',
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            mappings = {
+              n = {
+                ['l'] = require('telescope.actions').select_default,
+                ['h'] = require('telescope').extensions.file_browser.actions.goto_parent_dir,
+                ['g'] = false,
+              },
+              i = {
+                ['<C-l>'] = require('telescope.actions').select_default,
+                ['<C-h>'] = require('telescope').extensions.file_browser.actions.goto_parent_dir,
+                ['<C-g>'] = false,
+              },
+            },
+          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'file_browser')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -496,6 +527,14 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- File browser
+      vim.keymap.set('n', '<leader>n', function()
+        require('telescope').extensions.file_browser.file_browser {
+          path = vim.fn.expand '%:p:h',
+          select_buffer = true,
+        }
+      end, { desc = 'File browser' })
     end,
   },
 

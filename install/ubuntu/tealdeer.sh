@@ -5,7 +5,7 @@ set -euo pipefail
 
 install() {
     curl -fLo $HOME/bin/tldr --create-dirs \
-        https://github.com/dbrgn/tealdeer/releases/download/v1.4.1/tldr-linux-x86_64-musl
+        https://github.com/tealdeer-rs/tealdeer/releases/download/v1.7.0/tealdeer-linux-x86_64-musl
     chmod +x $HOME/bin/tldr
 }
 

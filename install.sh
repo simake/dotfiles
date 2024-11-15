@@ -24,7 +24,7 @@ case "$active_OS" in
         ./macos/stow.sh
         ./macos/ripgrep.sh
         ./macos/fd.sh
-        ./macos/pyenv.sh
+        #./macos/pyenv.sh
         ./macos/tealdeer.sh
         ./macos/hyperfine.sh
         ./macos/zsh.sh
@@ -38,7 +38,7 @@ case "$active_OS" in
         ./ubuntu/stow.sh
         ./ubuntu/ripgrep.sh
         ./ubuntu/fd.sh
-        ./ubuntu/pyenv.sh
+        #./ubuntu/pyenv.sh
         ./ubuntu/tealdeer.sh
         ./ubuntu/hyperfine.sh
         ./ubuntu/zsh.sh

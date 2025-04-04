@@ -22,14 +22,35 @@
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
     },
-    // Smart selection expansion with ctrl+l/ctrl+h
+    // Smart selection expansion with ctrl+j/ctrl+k
     {
-        "key": "ctrl+l",
+        "key": "ctrl+j",
         "command": "editor.action.smartSelect.expand"
     },
     {
-        "key": "ctrl+h",
+        "key": "ctrl+k",
         "command": "editor.action.smartSelect.shrink"
+    },
+    // Subword navigation with ctrl+h/ctrl+l
+    {
+        "key": "ctrl+l",
+        "command": "subwordNavigation.cursorSubwordRight",
+        "when": "!(editorHasSelection || vim.mode == 'Visual')"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "subwordNavigation.cursorSubwordLeft",
+        "when": "!(editorHasSelection || vim.mode == 'Visual')"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "subwordNavigation.cursorSubwordRightSelect",
+        "when": "editorHasSelection || vim.mode == 'Visual'"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "subwordNavigation.cursorSubwordLeftSelect",
+        "when": "editorHasSelection || vim.mode == 'Visual'"
     },
     // Use ctrl+d on Windows/Linux to expand selection to other occurrences even in vim mode
     {

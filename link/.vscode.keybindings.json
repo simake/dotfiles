@@ -81,21 +81,4 @@
         "when": "neovim.mode == insert && editorTextFocus",
         "args": "k"
     },
-    // angular2-switcher
-    // {
-    //     "command": "extension.switchTs",
-    //     "key": "alt+u",
-    // },
-    // {
-    //     "command": "extension.switchTemplate",
-    //     "key": "alt+i",
-    // },
-    // {
-    //     "command": "extension.switchStyle",
-    //     "key": "alt+o",
-    // },
-    // {
-    //     "command": "extension.switchSpec",
-    //     "key": "alt+p",
-    // }
 ]

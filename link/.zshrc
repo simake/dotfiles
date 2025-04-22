@@ -85,24 +85,8 @@ bindkey -M viins "^ " globalias
 
 ### Plugin Configuration (pre-loading)
 
-  ## wfxr/forgit
-    forgit_log=ggl
-    forgit_diff=ggd
-    forgit_add=gga
-    forgit_reset_head=ggrh
-    forgit_ignore=ggi
-    forgit_checkout_file=ggcof
-    forgit_checkout_branch=ggco
-    forgit_branch_delete=ggbd
-    forgit_checkout_tag=ggcot
-    forgit_checkout_commit=ggcoc
-    forgit_revert_commit=ggrc
-    forgit_clean=ggclean
-    forgit_stash_show=ggss
-    forgit_cherry_pick=ggcp
-    forgit_rebase=ggrb
-    forgit_blame=ggbl
-    forgit_fixup=ggfu
+  ## *author/package*
+    # *config*
   ##
 
 ###
@@ -120,7 +104,6 @@ antigen theme romkatv/powerlevel10k
 
 antigen bundle rupa/z
 antigen bundle zsh-users/zsh-completions
-antigen bundle wfxr/forgit
 
 # Note: order of these is important
 antigen bundle zdharma-continuum/fast-syntax-highlighting

@@ -104,8 +104,6 @@ antigen theme romkatv/powerlevel10k
 
 antigen bundle rupa/z
 antigen bundle zsh-users/zsh-completions
-
-# Note: order of these is important
 antigen bundle zdharma-continuum/fast-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 

@@ -25,40 +25,6 @@ export SAVEHIST=100000
 export HISTSIZE=100000
 export HISTFILE="$HOME/.zsh_history"
 
-# Use vi mode
-bindkey -v
-bindkey -M viins jk vi-cmd-mode
-bindkey -M viins kj vi-cmd-mode
-
-bindkey '^?' backward-delete-char
-bindkey "^W" backward-kill-word
-
-autoload -Uz select-bracketed
-zle -N select-bracketed
-for m in visual viopp; do
-    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-        bindkey -M $m $c select-bracketed
-    done
-done
-
-autoload -Uz select-quoted
-zle -N select-quoted
-for m in visual viopp; do
-    for c in {a,i}{\',\",\`}; do
-        bindkey -M $m $c select-quoted
-    done
-done
-
-# TODO: add in the below code without adding delay to commands such as dd and cc
-autoload -Uz surround
-#zle -N delete-surround surround
-#zle -N change-surround surround
-zle -N add-surround surround
-#bindkey -M vicmd cs change-surround
-#bindkey -M vicmd ds delete-surround
-#bindkey -M vicmd ys add-surround
-bindkey -M visual S add-surround
-
 # Setup autocompletion
 autoload -Uz compinit; compinit -C -i
 zstyle ':completion::complete:*' use-cache 1
@@ -67,10 +33,6 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# Edit line in vim with ctrl-x ctrl-x (useful for multiline)
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^x^x' edit-command-line
 
 # Hit ctrl-space to expand aliases
 globalias() {
@@ -85,24 +47,15 @@ bindkey -M viins "^ " globalias
 
 ### Plugin Configuration (pre-loading)
 
-  ## wfxr/forgit
-    forgit_log=ggl
-    forgit_diff=ggd
-    forgit_add=gga
-    forgit_reset_head=ggrh
-    forgit_ignore=ggi
-    forgit_checkout_file=ggcof
-    forgit_checkout_branch=ggco
-    forgit_branch_delete=ggbd
-    forgit_checkout_tag=ggcot
-    forgit_checkout_commit=ggcoc
-    forgit_revert_commit=ggrc
-    forgit_clean=ggclean
-    forgit_stash_show=ggss
-    forgit_cherry_pick=ggcp
-    forgit_rebase=ggrb
-    forgit_blame=ggbl
-    forgit_fixup=ggfu
+  ## jeffreytse/zsh-vi-mode
+    # Workaround for jk and kj: https://github.com/jeffreytse/zsh-vi-mode/issues/79
+    # Default escape key <ESC> for insert mode
+    ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
+    # The plugin will auto execute this zvm_after_init function
+    function zvm_after_init() {
+      zvm_bindkey viins 'jk' zvm_exit_insert_mode
+      zvm_bindkey viins 'kj' zvm_exit_insert_mode
+    }
   ##
 
 ###
@@ -116,13 +69,9 @@ fi
 # Initialize Antigen and plugins
 source ~/.antigen/antigen.zsh
 
+antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle rupa/z
 antigen bundle zsh-users/zsh-completions
-antigen bundle wfxr/forgit
-
-# Note: order of these is important
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure --branch=main
 antigen bundle zdharma-continuum/fast-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 

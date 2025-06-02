@@ -4,6 +4,7 @@ git:
   autoRefresh: true
   autoFetch: true
   disableForcePushing: true
+  autoForwardBranches: none
   commit:
     autoWrapCommitMessage: false
 refresher:

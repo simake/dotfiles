@@ -246,7 +246,21 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      -- Workaround for gc and gcc overlapping
+      -- https://github.com/numToStr/Comment.nvim/issues/483
+      require('Comment').setup()
+      vim.keymap.del('n', 'gc')
+      vim.keymap.del('n', 'gb')
+      local wk = require 'which-key'
+      wk.add {
+        { 'gb', group = 'Comment toggle blockwise' },
+        { 'gc', group = 'Comment toggle linewise' },
+      }
+    end,
+  },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:

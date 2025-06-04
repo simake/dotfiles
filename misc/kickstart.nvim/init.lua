@@ -907,11 +907,13 @@ require('lazy').setup({
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
-        enabled = function()
-          -- The cmp menu appearing when the cursor is the first thing on the line is usually just annoying
-          -- and makes it hard to insert multiple newlines in a row.
-          return has_words_before()
-        end,
+        -- I'm not sure this works as expected:
+        -- enabled = function()
+        --   -- The cmp menu appearing when the cursor is the first thing on the line is usually just annoying
+        --   -- and makes it hard to insert multiple newlines in a row.
+        --   return has_words_before()
+        -- end,
+        enabled = true,
 
         -- Accept the completion, for nvim-cmp or copilot, depending on which is showing.
         -- This is outside the `mapping` table because it should still work when the cmp menu is hidden.

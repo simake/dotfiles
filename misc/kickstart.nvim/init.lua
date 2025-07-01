@@ -492,6 +492,7 @@ require('lazy').setup({
           },
           file_browser = {
             hidden = { file_browser = true, folder_browser = true },
+            respect_gitignore = false,
             initial_mode = 'normal',
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,

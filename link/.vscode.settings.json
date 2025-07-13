@@ -146,6 +146,28 @@
         },
     ],
 
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.lua",
+            "args": [
+                [
+                    "local code = require('vscode')",
+                    "code.action('vscode-neovim.escape')",
+                ],
+            ],
+        },
+        "kj": {
+            "command": "vscode-neovim.lua",
+            "args": [
+                [
+                    "local code = require('vscode')",
+                    "code.action('vscode-neovim.escape')",
+                ],
+            ],
+        },
+    },
+    "vscode-neovim.compositeTimeout": 300,
+
     "editor.bracketPairColorization.enabled": false,
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"

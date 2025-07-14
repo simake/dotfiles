@@ -1044,5 +1044,12 @@ require('lazy').setup({
   lockfile = "~/dotfiles/misc/vscode-neovim/lazy-lock.json",
 })
 
+-- [[ Keymaps for vscode actions ]]
+-- angular2-switcher
+vim.keymap.set('n', 'gu', function() require('vscode').action('extension.switchTs') end)
+vim.keymap.set('n', 'gi', function() require('vscode').action('extension.switchTemplate') end)
+vim.keymap.set('n', 'go', function() require('vscode').action('extension.switchStyle') end)
+vim.keymap.set('n', 'gp', function() require('vscode').action('extension.switchSpec') end)
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

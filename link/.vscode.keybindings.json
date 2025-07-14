@@ -68,4 +68,13 @@
         "command": "-editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
+    // vscode-neovim
+    // Make cmd+d work correctly in any mode
+    // https://github.com/vscode-neovim/vscode-neovim?tab=readme-ov-file#vscodewith_insertcallback-ms
+    {
+        "key": "cmd+d",
+        "command": "vscode-neovim.lua",
+        "args": "require('vscode-neovim').with_insert(function() require('vscode-neovim').action('editor.action.addSelectionToNextFindMatch') end)",
+        "when": "isMac"
+    },
 ]

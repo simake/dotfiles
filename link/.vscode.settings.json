@@ -146,6 +146,9 @@
         },
     ],
 
+    "vscode-neovim.neovimInitVimPaths.darwin": "~/dotfiles/misc/vscode-neovim/init.lua",
+    "vscode-neovim.neovimInitVimPaths.linux": "~/dotfiles/misc/vscode-neovim/init.lua",
+    "vscode-neovim.neovimInitVimPaths.win32": "~/dotfiles/misc/vscode-neovim/init.lua",
     "vscode-neovim.compositeKeys": {
         "jk": {
             "command": "vscode-neovim.lua",

@@ -9,6 +9,79 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "F5 toggles mouse mode (Left Ctrl = Right Click, Fn = Left Click)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mouse_mode",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    }
+                                ],
+                                "from": { "key_code": "f5" },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "mouse_mode",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mouse_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "f5" },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "mouse_mode",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mouse_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "pointing_button": "button2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mouse_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "fn",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "pointing_button": "button1" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Fast-switch to apps with right_command+<number>",
                         "manipulators": [
                             {

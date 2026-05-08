@@ -34,6 +34,7 @@ alias gspush='git stash push'
 alias gspushm='git stash push -m'
 alias gspop='git stash pop'
 alias gsapply='git stash apply'
+alias gchp='git cherry-pick'
 
 alias lg='lazygit --use-config-file $HOME/lazygit-config.yml'
 

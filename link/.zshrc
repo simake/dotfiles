@@ -98,6 +98,9 @@ antigen apply
 [ ! -d $HOME/bin ] && mkdir $HOME/bin
 export PATH=$HOME/bin:$PATH
 
+# Misc exports
+[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
+
 ### Sourcing
 source_if_exists() {
   [[ -f "$1" ]] && source "$1"

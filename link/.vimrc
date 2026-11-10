@@ -157,6 +157,10 @@ nnoremap x "_x
 vnoremap x "_x
 nnoremap c "_c
 
+" Delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
 " Toggle relative numbers
 nnoremap <silent> <leader>tr :set relativenumber!<CR>
 

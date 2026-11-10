@@ -7,6 +7,10 @@ git:
   autoForwardBranches: none
   commit:
     autoWrapCommitMessage: false
+  #diffRenderers:
+    #- colorArg: never
+    #  command: diff-so-fancy
+    #- command: delta --paging=never --dark --syntax-theme='Dracula' --zero-style='dim syntax' --minus-style='syntax "#3f0001"' --minus-emph-style='bold syntax "#901011"' --plus-style='syntax "#002800"' --plus-emph-style='bold syntax "#006000"' --file-style='blue' --file-decoration-style='blue dim box' --hunk-header-style='line-number dim syntax' --hunk-header-decoration-style='none' #--line-numbers --line-numbers-left-format='{nm:>4}┊' --line-numbers-right-format='{np:>4}│ ' --line-numbers-minus-style='#b04040' --line-numbers-plus-style='#40a040' --line-numbers-zero-style='#4b5263' --hyperlinks --wrap-max-lines=unlimited --whitespace-error-style='22 reverse'
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 300 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
